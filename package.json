@@ -1,0 +1,47 @@
+{
+  "name": "loanjs",
+  "version": "0.0.0",
+  "main": "lib/loanjs.js",
+  "description": "Calculate loan in js (browser/node.js) for equal installments, installments decreasing, the sum of interest, etc.",
+
+  "homepage": "https://github.com/kfiku/LoanJS",
+
+  "bugs": "https://github.com/kfiku/loanjs/issues",
+  "author": {
+    "name": "Grzegorz Klimek",
+    "email": "kfiku.com@gmail.com",
+    "url": "kfiku.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kfiku/loanjs"
+  },
+  "license": "MIT",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "loanjs",
+    "nodejs",
+    " loan",
+    " calculator",
+    " loan-calculator",
+    " js",
+    " installments",
+    " intrerest"
+  ],
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-tasks": "^0.4.0",
+    "time-grunt": "^0.3.1",
+    "grunt-mocha-cli": "^1.9.0",
+    "jshint-stylish": "^0.2.0",
+    "browserify": "^4.1.3"
+  },
+  "scripts": {
+    "test": "grunt",
+    "browser": "browserify lib/loanjs.js > browser.js"
+  }
+}
