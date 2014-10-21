@@ -1,4 +1,4 @@
-#  [![Build Status](https://secure.travis-ci.org/kfiku/loanjs.png?branch=master)](http://travis-ci.org/kfiku/loanjs)
+#  [![Build Status](https://secure.travis-ci.org/kfiku/LoanJS.png?branch=master)](https://travis-ci.org/kfiku/LoanJS)
 
 > Calculate loan in js (browser/node.js) for equal installments, installments decreasing, the sum of interest, etc.
 
