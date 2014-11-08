@@ -1,7 +1,7 @@
 {
   "name": "loanjs",
   "version": "0.0.0",
-  "main": "lib/loanjs.js",
+  "main": "lib/loan.js",
   "description": "Calculate loan in js (browser/node.js) for equal installments, installments decreasing, the sum of interest, etc.",
 
   "homepage": "https://github.com/kfiku/LoanJS",
@@ -23,12 +23,12 @@
   "keywords": [
     "loanjs",
     "nodejs",
-    " loan",
-    " calculator",
-    " loan-calculator",
-    " js",
-    " installments",
-    " intrerest"
+    "loan",
+    "calculator",
+    "loan-calculator",
+    "js",
+    "installments",
+    "intrerest"
   ],
   "devDependencies": {
     "grunt-contrib-jshint": "^0.10.0",
@@ -42,6 +42,6 @@
   },
   "scripts": {
     "test": "grunt",
-    "browser": "browserify lib/loanjs.js > browser.js"
+    "browser": "browserify lib/loan.js > browser.js"
   }
 }
