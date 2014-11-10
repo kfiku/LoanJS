@@ -1,4 +1,4 @@
-#  [![Build Status](https://secure.travis-ci.org/kfiku/LoanJS.png?branch=master)](https://travis-ci.org/kfiku/LoanJS)
+# LoanJS [![NPM version](https://badge.fury.io/js/loanjs.png?style=flat)](http://badge.fury.io/js/loanjs) [![Build Status](https://travis-ci.org/kfiku/LoanJS.svg)](https://travis-ci.org/kfiku/LoanJS) [![Dependency Status](https://david-dm.org/kfiku/LoanJS/dev-status.svg)](https://david-dm.org/kfiku/loanjs)
 
 > Calculate loan in js (browser/node.js/browserify) for equal installments, installments decreasing, the sum of interest, etc.
 
@@ -20,7 +20,8 @@ var loan = new Loan(1000, // amount
     {
       capital : number,
       intrest : number,
-      sum     : number
+      sum     : number,
+      remain  : number
     }
   ],
   amount        : number,
@@ -100,6 +101,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+#### 2014-11-10 v0.0.4
+ * update dependencies
+ 
 #### 2014-11-10 v0.0.2
  * now you can use it in node/browserify and browser
 
