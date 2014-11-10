@@ -98,6 +98,13 @@ more examples [here](https://github.com/kfiku/LoanJS/tree/master/example)
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com).
 
 
+## Release History
+
+#### 2014-11-10 v0.0.2
+ * now you can use it in node/browserify and browser
+
+
+
 ## License
 
 Copyright (c) 2014 Grzegorz Klimek  
