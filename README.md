@@ -55,9 +55,10 @@ Loan(amount, installmentsNumber, interestRate, diminishing)
 { 
   installments  : [
     {
-      capital : number,
-      intrest : number,
-      sum     : number
+      capital     : number,
+      intrest     : number,
+      installment : number,
+      remain      : number
     }
   ],
   amount        : number,
@@ -69,6 +70,7 @@ Loan(amount, installmentsNumber, interestRate, diminishing)
 
 ## Examples
 
+nodejs / browserify example
 ```js
 
 var Loan = require('loanjs');
@@ -81,6 +83,15 @@ var loan_2 = new Loan(500000, 360, 3.5);
 
 ```
 
+Browser example:
+```html
+<script src="../../lib/loan.js"></script>
+<script>
+    var loan = new Loan(1000, 12, 5, true);
+</script>
+```
+
+more examples [here](https://github.com/kfiku/LoanJS/tree/master/example)
 
 ## Contributing
 
