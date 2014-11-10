@@ -10,5 +10,9 @@
   "unused": true,
   "boss": true,
   "eqnull": true,
-  "node": true
+  "node": true,
+  "browser": true,
+  "globals": {
+    "LOANJS_NAMESPACE": false
+  }
 }
