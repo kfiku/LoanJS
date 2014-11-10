@@ -5,17 +5,64 @@
   <title>LoanJs browser example</title>
 </head>
 <body>
+  <div id="tableBox">
+    <div>
+      <label for="amount">Amount:</label>
+      <input id="amount" value="100000">
+    </div>
+    <div>
+      <label for="months">Months:</label>
+      <input id="months" value="120">
+    </div>
+    <div>
+      <label for="intrestRate">Intrest rate:</label>
+      <input id="intrestRate" value="4">%
+    </div>
+    <div>
+      <label for="equal">Equal/Annual:</label>
+      <input id="equal" type="checkbox" checked>
+    </div>
+    <div>
+      <label></label>
+      <button id="calculate">Calculate</button>
+    </div>
+
+  </div>
+
   <script src="../../lib/loan.js"></script>
+  <script src="../../lib/loanToHtmlTable.js"></script>
   <script>
     // jsHint inline helper
-    /* global Loan */
+    /* global Loan, loanToHtmlTable */
+    (function () {
+      var
+        amount = document.getElementById('amount'),
+        months = document.getElementById('months'),
+        intrestRate = document.getElementById('intrestRate'),
+        equal = document.getElementById('equal'),
+        calculateBtn = document.getElementById('calculate'),
+        div = document.createElement("div"),
+        calc = function () {
+          console.log(amount.value, intrestRate.value, months.value, equal.checked);
+          var loan_1 = new Loan(
+                        Number(amount.value),
+                        Number(months.value),
+                        Number(intrestRate.value),
+                        equal.checked);
+          div.innerHTML = loanToHtmlTable(loan_1);
+        };
 
-    var loan_1 = new Loan(1000, 12, 5, true);
-    console.log(loan_1);
+      document.getElementById('tableBox').appendChild(div);
+
+      calculateBtn.addEventListener('click', calc);
+
+      calc();
+    }());
+
     // loan on 1 000($) in 12 diminishing installments (ex. months) with 5% interest rate
 
-    var loan_2 = new Loan(500000, 360, 3.5);
-    console.log(loan_2);
+    // var loan_2 = new Loan(500000, 360, 3.5);
+    // console.log(loan_2);
     // loan on 500 000($) in 360 equal installments (30 years) with 3.5% interest rate
   </script>
 </body>
