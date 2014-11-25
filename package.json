@@ -1,6 +1,6 @@
 {
   "name": "loanjs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "LoanJS.js",
   "description": "Calculate loan in js (browser/node.js) for equal installments, installments decreasing, the sum of interest, etc.",
   "homepage": "https://github.com/kfiku/LoanJS",
