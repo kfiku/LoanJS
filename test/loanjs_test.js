@@ -1,7 +1,7 @@
 /*global describe,it*/
 'use strict';
 var assert  = require('assert'),
-    Loan    = require('../lib/loan.js');
+    Loan    = require('../LoanJS').Loan;
 
 describe('loanjs node module.', function() {
   it('must count loan correctly', function() {
@@ -9,18 +9,18 @@ describe('loanjs node module.', function() {
         sum = 0,
         interestSum = 0;
 
-    assert(loan.installments.length === 20, true);
+    assert.ok(loan.installments.length === 20, true);
     for (var i = 0; i < loan.installments.length; i++) {
       var inst = loan.installments[i];
-      assert(inst.capital > 0, true);
-      assert(inst.intrest > 0, true);
-      assert(inst.installment === inst.capital + inst.intrest, true);
+      assert.ok(inst.capital > 0, 'inst.capital shoult be > 0');
+      assert.ok(inst.intrest > 0, 'inst.intrest shoult be > 0');
+      assert.ok(inst.installment === inst.capital + inst.intrest, 'inst.installment shoult be sum of capital and intrest');
 
       sum += inst.installment;
       interestSum += inst.intrest;
     }
 
-    assert(loan.interestSum > 0, true, 'wrong interestSum');
+    assert.ok(loan.interestSum > 0, 'wrong interestSum');
     assert.equal(loan.capitalSum, 100000, 'wrong capitalSum');
     assert.equal(loan.interestSum, interestSum,
                 'intrestsSum ('+loan.interestSum+') not exual to sum of all intrests ('+interestSum+') in instalments array');
