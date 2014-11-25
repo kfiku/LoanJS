@@ -2,26 +2,29 @@
 
 > Calculate loan in js (browser/node.js/browserify) for equal installments, installments decreasing, the sum of interest, etc.
 
+> Calculate best loan screnario (loan + interest/savings)
+
 
 ## Getting Started
 
 Install the module with: `npm install loanjs`
 
+#### Calculating Loan:
 ```js
-var Loan = require('loanjs');
-var loan = new Loan(1000, // amount
+var LoanJS = require('loanjs');
+var loan = new LoanJS.Loan(1000, // amount
                     12,   // installments number
                     5,    // interest rate
                     true  // diminishin
                     ); 
-// returns
+/** returns
 { 
   installments  : [
     {
-      capital : number,
-      intrest : number,
-      sum     : number,
-      remain  : number
+      capital     : number,
+      intrest     : number,
+      installment : number,
+      remain      : number
     }
   ],
   amount        : number,
@@ -29,7 +32,40 @@ var loan = new Loan(1000, // amount
   capitalSum    : number,
   sum           : number
 }
+*/
 ```
+
+#### Calculating best loan scenario:
+```js
+var BestLoan = require('loanjs').BestLoan;
+var scenario = new BestLoan(200000, 2000, 12*30, 4.5, 3.5, {tax:19}),
+/** returns
+{ 
+  best: {
+    diminishing: false,
+    moneyToLoan: 2949.44,
+    moneyToSavings: 50.56,
+    instNr: 204,
+    loan: LoanJsObject,
+    interest: IntrestJsObject,
+    pointOfContact: { instNr: 146, costs: 164678.67 }
+  },
+  variants : [
+    {
+      diminishing: false,
+      moneyToLoan: 2949.44,
+      moneyToSavings: 50.56,
+      instNr: 204,
+      loan: LoanJsObject,
+      interest: IntrestJsObject,
+      pointOfContact: { instNr: 146, costs: 164678.67 }
+    },
+    ...
+  ]
+}
+*/
+```
+
 
 
 ```sh
@@ -41,7 +77,8 @@ $ grunt browserify
 
 ## Documentation
 
-Loan(amount, installmentsNumber, interestRate, diminishing)
+### Loan
+LoanJS.Loan(amount, installmentsNumber, interestRate, diminishing)
 
 ### Arguments
 | Argument           | type   | default   | Description
@@ -74,21 +111,100 @@ Loan(amount, installmentsNumber, interestRate, diminishing)
 nodejs / browserify example
 ```js
 
-var Loan = require('loanjs');
+var Loan = require('loanjs').Loan;
 
 var loan_1 = new Loan(1000, 12, 5, true);
 // loan on 1 000($) in 12 diminishing installments (ex. months) with 5% interest rate
 
 var loan_2 = new Loan(500000, 360, 3.5);
 // loan on 500 000($) in 360 equal installments (30 years) with 3.5% interest rate
-
 ```
 
 Browser example:
+> You can also render loan as html table
+
 ```html
 <script src="../../lib/loan.js"></script>
+<script src="../../lib/loanToHtmlTable.js"></script>
 <script>
-    var loan = new Loan(1000, 12, 5, true);
+    var loan = new LoanJS.Loan(1000, 12, 5, true);
+    
+    var div = document.createElement("div");
+    div.innerHTML = LoanJS.loanToHtmlTable(loan); // loan rendering as html table string
+    document.body.appendChild(div);
+    
+</script>
+```
+
+
+### BestLoan
+It's using [InterestJS](https://github.com/kfiku/InterestJS)
+
+BestLoan(amount, maxInstallment, maxInstallmentsNumber, interestRate, savingsInterestRate, params)
+
+### Arguments
+| Argument              | type   | default   | Description
+| --------------------- | ------ | --------- | ------------------
+| amount                | number | *required | full amount of Loan
+| maxInstallment        | number | *required | max installments amount you can accept
+| maxInstallmentsNumber | number | *required | max installments number
+| interestRate          | number | *required | Loan interest rate
+| savingsInterestRate   | number | *required | savings interest rate
+| params                | object | undefined | parameters for interest js
+
+### Returns
+```js
+{ 
+  best: {
+    diminishing: false,
+    moneyToLoan: 2949.44,
+    moneyToSavings: 50.56,
+    instNr: 204,
+    loan: LoanJsObject,
+    interest: IntrestJsObject,
+    pointOfContact: { instNr: 146, costs: 164678.67 }
+  },
+  variants : [ // all variants
+    {
+      diminishing: false,
+      moneyToLoan: 2949.44,
+      moneyToSavings: 50.56,
+      instNr: 204,
+      loan: LoanJsObject,
+      interest: IntrestJsObject,
+      pointOfContact: { instNr: 146, costs: 164678.67 }
+    },
+    //...
+  ]
+}
+```
+
+## Examples
+
+nodejs / browserify example
+```js
+var BestLoan = require('loanjs').BestLoan;
+var scenario = new BestLoan(200000, 2000, 12*30, 4.5, 3.5, {tax:19}),
+```
+
+Browser example:
+> You can also render loan as html table
+
+```html
+<script src="../../lib/loan.js"></script>
+<script src="../../lib/loanToHtmlTable.js"></script>
+<script>
+    var scenario = new LoanJS.BestLoan(200000, 2000, 12*30, 4.5, 3.5, {tax:19}),
+        best = scenario.best;
+    
+    console.log(
+      'Best Loan scenario for this params will be loan: \n ' +
+      'installments number: ' + best.instNr + '\n ' + 
+      'money to loan: ' + best.moneyToLoan + '\n ' + 
+      'money to savings: ' + best.moneyToSavings + '\n ' + 
+      'you will end loan in : ' + best.pointOfContact.instNr + ' month \n ' + 
+      'costs will be: ' + best.pointOfContact.costs + ' \n '
+    );
 </script>
 ```
 

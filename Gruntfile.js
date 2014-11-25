@@ -20,7 +20,7 @@ module.exports = function (grunt) {
         src: 'Gruntfile.js'
       },
       lib: {
-        src: ['lib/**/*.js']
+        src: ['lib/**/*.js', 'LoanJS.js']
       },
       test: {
         src: ['test/**/*.js']
@@ -28,7 +28,6 @@ module.exports = function (grunt) {
     },
     mochacli: {
       options: {
-        reporter: 'nyan',
         bail: true
       },
       all: ['test/*.js']
