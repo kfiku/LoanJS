@@ -3,26 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <title>LoanJs browser example</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+
+    .form-row {
+      margin: 10px 0;
+    }
+    .form-row label {
+      display: inline-block;
+      width: 120px;
+    }
+
+    table {
+      border-spacing: 0;
+    }
+
+    td,
+    th {
+      border-right: 1px solid #ddd;
+      padding: 6px 12px;
+    }
+
+    td {
+      text-align: right;
+    }
+
+    th {
+      border-bottom: 2px solid #ddd;
+      padding: 12px;
+    }
+
+    td:last-child,
+    th:last-child {
+      border-right: none;
+    }
+  </style>
 </head>
 <body>
+  <h1>Calculate Loan example:</h1>
+
   <div id="tableBox">
-    <div>
+    <div class="form-row">
       <label for="amount">Amount:</label>
       <input id="amount" value="100000">
     </div>
-    <div>
+    <div class="form-row">
       <label for="months">Months:</label>
       <input id="months" value="120">
     </div>
-    <div>
+    <div class="form-row">
       <label for="intrestRate">Intrest rate:</label>
       <input id="intrestRate" value="4">%
     </div>
-    <div>
+    <div class="form-row">
       <label for="equal">Equal/Annual:</label>
       <input id="equal" type="checkbox" checked>
     </div>
-    <div>
+    <div class="form-row">
       <label></label>
       <button id="calculate">Calculate</button>
     </div>
@@ -33,7 +75,7 @@
   <script src="../../lib/loanToHtmlTable.js"></script>
   <script>
     // jsHint inline helper
-    /* global Loan, loanToHtmlTable */
+    /* global LoanJS */
     (function () {
       var
         amount = document.getElementById('amount'),
@@ -43,13 +85,12 @@
         calculateBtn = document.getElementById('calculate'),
         div = document.createElement("div"),
         calc = function () {
-          console.log(amount.value, intrestRate.value, months.value, equal.checked);
-          var loan_1 = new Loan(
+          var loan_1 = new LoanJS.Loan(
                         Number(amount.value),
                         Number(months.value),
                         Number(intrestRate.value),
-                        equal.checked);
-          div.innerHTML = loanToHtmlTable(loan_1);
+                        !equal.checked);
+          div.innerHTML = LoanJS.loanToHtmlTable(loan_1);
         };
 
       document.getElementById('tableBox').appendChild(div);

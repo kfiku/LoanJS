@@ -1,6 +1,6 @@
 'use strict';
 
-var Loan = require('../lib/loanjs.js');
+var Loan = require('loanjs').Loan;
 
 var loan_1 = new Loan(1000, 12, 5, true);
 console.log(loan_1);
