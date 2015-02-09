@@ -14,7 +14,7 @@ npm install loanjs
 
 or Bower:
 ```
-bower install LoanJS --save
+bower install loan-js --save
 ```
 
 #### Calculating Loan:
