@@ -7,7 +7,15 @@
 
 ## Getting Started
 
-Install the module with: `npm install loanjs`
+Install the module with: 
+```
+npm install loanjs
+```
+
+or Bower:
+```
+bower install LoanJS --save
+```
 
 #### Calculating Loan:
 ```js
@@ -106,37 +114,6 @@ LoanJS.Loan(amount, installmentsNumber, interestRate, diminishing)
 }
 ```
 
-## Examples
-
-nodejs / browserify example
-```js
-
-var Loan = require('loanjs').Loan;
-
-var loan_1 = new Loan(1000, 12, 5, true);
-// loan on 1 000($) in 12 diminishing installments (ex. months) with 5% interest rate
-
-var loan_2 = new Loan(500000, 360, 3.5);
-// loan on 500 000($) in 360 equal installments (30 years) with 3.5% interest rate
-```
-
-Browser example:
-> You can also render loan as html table
-
-```html
-<script src="../../lib/loan.js"></script>
-<script src="../../lib/loanToHtmlTable.js"></script>
-<script>
-    var loan = new LoanJS.Loan(1000, 12, 5, true);
-    
-    var div = document.createElement("div");
-    div.innerHTML = LoanJS.loanToHtmlTable(loan); // loan rendering as html table string
-    document.body.appendChild(div);
-    
-</script>
-```
-
-
 ### BestLoan
 It's using [InterestJS](https://github.com/kfiku/InterestJS)
 
@@ -179,12 +156,19 @@ BestLoan(amount, maxInstallment, maxInstallmentsNumber, interestRate, savingsInt
 }
 ```
 
+
 ## Examples
 
 nodejs / browserify example
 ```js
-var BestLoan = require('loanjs').BestLoan;
-var scenario = new BestLoan(200000, 2000, 12*30, 4.5, 3.5, {tax:19}),
+
+var Loan = require('loanjs').Loan;
+
+var loan_1 = new Loan(1000, 12, 5, true);
+// loan on 1 000($) in 12 diminishing installments (ex. months) with 5% interest rate
+
+var loan_2 = new Loan(500000, 360, 3.5);
+// loan on 500 000($) in 360 equal installments (30 years) with 3.5% interest rate
 ```
 
 Browser example:
@@ -194,21 +178,17 @@ Browser example:
 <script src="../../lib/loan.js"></script>
 <script src="../../lib/loanToHtmlTable.js"></script>
 <script>
-    var scenario = new LoanJS.BestLoan(200000, 2000, 12*30, 4.5, 3.5, {tax:19}),
-        best = scenario.best;
+    var loan = new LoanJS.Loan(1000, 12, 5, true);
     
-    console.log(
-      'Best Loan scenario for this params will be loan: \n ' +
-      'installments number: ' + best.instNr + '\n ' + 
-      'money to loan: ' + best.moneyToLoan + '\n ' + 
-      'money to savings: ' + best.moneyToSavings + '\n ' + 
-      'you will end loan in : ' + best.pointOfContact.instNr + ' month \n ' + 
-      'costs will be: ' + best.pointOfContact.costs + ' \n '
-    );
+    var div = document.createElement("div");
+    div.innerHTML = LoanJS.loanToHtmlTable(loan); // loan rendering as html table string
+    document.body.appendChild(div);
+    
 </script>
 ```
 
 more examples [here](https://github.com/kfiku/LoanJS/tree/master/example)
+
 
 ## Contributing
 

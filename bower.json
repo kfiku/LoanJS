@@ -1,0 +1,26 @@
+{
+  "name": "LoanJS",
+  "main": "lib/loan.js",
+  "version": "0.0.7",
+  "homepage": "https://github.com/kfiku/LoanJS",
+  "authors": [
+    "Grzegorz Klimek <kfiku.com@gmail.com>"
+  ],
+  "description": "Calculate loan in js (browser/node.js) for equal installments, installments decreasing, the sum of interest, etc.",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "loan",
+    "credit",
+    "calculator"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
