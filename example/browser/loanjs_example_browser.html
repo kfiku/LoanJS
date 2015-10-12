@@ -57,8 +57,8 @@
       <input id="months" value="120">
     </div>
     <div class="form-row">
-      <label for="intrestRate">Intrest rate:</label>
-      <input id="intrestRate" value="4">%
+      <label for="interestRate">Interest rate:</label>
+      <input id="interestRate" value="4">%
     </div>
     <div class="form-row">
       <label for="equal">Equal/Annual:</label>
@@ -80,7 +80,7 @@
       var
         amount = document.getElementById('amount'),
         months = document.getElementById('months'),
-        intrestRate = document.getElementById('intrestRate'),
+        interestRate = document.getElementById('interestRate'),
         equal = document.getElementById('equal'),
         calculateBtn = document.getElementById('calculate'),
         div = document.createElement("div"),
@@ -88,7 +88,7 @@
           var loan_1 = new LoanJS.Loan(
                         Number(amount.value),
                         Number(months.value),
-                        Number(intrestRate.value),
+                        Number(interestRate.value),
                         !equal.checked);
           div.innerHTML = LoanJS.loanToHtmlTable(loan_1);
         };

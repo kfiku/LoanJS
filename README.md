@@ -30,7 +30,7 @@ var loan = new LoanJS.Loan(1000, // amount
   installments  : [
     {
       capital     : number,
-      intrest     : number,
+      interest    : number,
       installment : number,
       remain      : number
     }
@@ -55,7 +55,7 @@ var scenario = new BestLoan(200000, 2000, 12*30, 4.5, 3.5, {tax:19}),
     moneyToSavings: 50.56,
     instNr: 204,
     loan: LoanJsObject,
-    interest: IntrestJsObject,
+    interest: InterestJsObject,
     pointOfContact: { instNr: 146, costs: 164678.67 }
   },
   variants : [
@@ -65,7 +65,7 @@ var scenario = new BestLoan(200000, 2000, 12*30, 4.5, 3.5, {tax:19}),
       moneyToSavings: 50.56,
       instNr: 204,
       loan: LoanJsObject,
-      interest: IntrestJsObject,
+      interest: InterestJsObject,
       pointOfContact: { instNr: 146, costs: 164678.67 }
     },
     ...
@@ -102,7 +102,7 @@ LoanJS.Loan(amount, installmentsNumber, interestRate, diminishing)
   installments  : [
     {
       capital     : number,
-      intrest     : number,
+      interest    : number,
       installment : number,
       remain      : number
     }
@@ -138,7 +138,7 @@ BestLoan(amount, maxInstallment, maxInstallmentsNumber, interestRate, savingsInt
     moneyToSavings: 50.56,
     instNr: 204,
     loan: LoanJsObject,
-    interest: IntrestJsObject,
+    interest: InterestJsObject,
     pointOfContact: { instNr: 146, costs: 164678.67 }
   },
   variants : [ // all variants
@@ -148,7 +148,7 @@ BestLoan(amount, maxInstallment, maxInstallmentsNumber, interestRate, savingsInt
       moneyToSavings: 50.56,
       instNr: 204,
       loan: LoanJsObject,
-      interest: IntrestJsObject,
+      interest: InterestJsObject,
       pointOfContact: { instNr: 146, costs: 164678.67 }
     },
     //...

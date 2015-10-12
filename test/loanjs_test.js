@@ -13,17 +13,17 @@ describe('loanjs node module.', function() {
     for (var i = 0; i < loan.installments.length; i++) {
       var inst = loan.installments[i];
       assert.ok(inst.capital > 0, 'inst.capital shoult be > 0');
-      assert.ok(inst.intrest > 0, 'inst.intrest shoult be > 0');
-      assert.ok(inst.installment === inst.capital + inst.intrest, 'inst.installment shoult be sum of capital and intrest');
+      assert.ok(inst.interest > 0, 'inst.interest shoult be > 0');
+      assert.ok(inst.installment === inst.capital + inst.interest, 'inst.installment shoult be sum of capital and interest');
 
       sum += inst.installment;
-      interestSum += inst.intrest;
+      interestSum += inst.interest;
     }
 
     assert.ok(loan.interestSum > 0, 'wrong interestSum');
     assert.equal(loan.capitalSum, 100000, 'wrong capitalSum');
     assert.equal(loan.interestSum, interestSum,
-                'intrestsSum ('+loan.interestSum+') not exual to sum of all intrests ('+interestSum+') in instalments array');
+                'interestsSum ('+loan.interestSum+') not exual to sum of all interests ('+interestSum+') in instalments array');
     assert.equal(loan.sum, loan.interestSum + loan.capitalSum, true,
                 'sum ('+loan.sum+') not equal to interestSum + capitalSum ('+(loan.interestSum + loan.capitalSum)+')');
     assert.equal(loan.sum, sum, true,
