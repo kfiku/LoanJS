@@ -30,20 +30,34 @@
     "intrerest"
   ],
   "devDependencies": {
-    "grunt": "~1.0.0-rc1",
-    "grunt-contrib-jshint": "^1",
-    "grunt-contrib-watch": "^0.6",
-    "grunt-mocha-cli": "^2.0",
-    "jshint-stylish": "^2",
-    "load-grunt-tasks": "^3.3.0",
-    "time-grunt": "^1.0.0"
+    "browserify": "latest",
+    "http-server": "^0.9.0",
+    "jshint": "latest",
+    "live-reload": "^1.1.0",
+    "lodash": "^4.5.1",
+    "node-sass": "latest",
+    "opener": "^1.4.1",
+    "parallelshell": "^2.0.0",
+    "watch": "^0.17.1"
   },
   "scripts": {
-    "grunt": "grunt",
-    "test": "grunt",
-    "browser": "browserify LoanJS.js > browser.js"
+    "lint": "jshint scripts/build.js",
+
+    "html": "node ./scripts/html.js",
+    "html:prod": "node ./scripts/html.js prod",
+    "watch": "watch 'npm run html' ./templates",
+
+    "open:dev": "opener http://localhost:9090",
+    "serve": "http-server -p 9090 ./",
+    "live-reload": "live-reload --port 9091 ./",
+
+    "dev": "npm run open:dev -s & parallelshell 'npm run live-reload -s' 'npm run serve -s' 'npm run watch'"
   },
   "dependencies": {
-    "interestjs": "0.1.0"
+    "interestjs": "0.1",
+    "loanjs": "~0.1"
+  },
+  "engines": {
+    "node": ">= 5.0"
   }
 }
