@@ -5,7 +5,7 @@
   "installments_quantity": "Ilość rat",
   "interest": "Oprocentowanie",
   "equal_installments": "Raty równe",
-  "decreasing_installments": "Raty malejce",
+  "diminishing_installments": "Raty malejce",
   "interest_sum": "Suma odsetek",
   "installment_amount": "Wysokość raty",
   "first_installment_amount": "Pierwsza rata",

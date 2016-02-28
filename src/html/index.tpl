@@ -18,7 +18,7 @@
         <th rowspan="2"><%= trans.installments_quantity %></th>
         <th rowspan="2"><%= trans.interest %></th>
         <th colspan="2" class="text-center"><%= trans.equal_installments %></th>
-        <th colspan="3" class="text-center"><%= trans.decreasing_installments %></th>
+        <th colspan="3" class="text-center"><%= trans.diminishing_installments %></th>
       </tr>
       <tr>
         <th><%= trans.interest_sum %></th>

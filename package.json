@@ -30,30 +30,30 @@
     "intrerest"
   ],
   "devDependencies": {
-    "babel-preset-es2015": "^6.5.0",
-    "babelify": "^7.2.0",
     "browserify": "latest",
     "http-server": "^0.9.0",
     "jshint": "latest",
     "jstify": "^0.14.0",
     "live-reload": "^1.1.0",
     "lodash": "^4.5.1",
+    "lodash.escape": "^4.0.0",
     "node-sass": "latest",
     "opener": "^1.4.1",
     "parallelshell": "^2.0.0",
+    "tsify": "^0.13.2",
     "watch": "^0.17.1"
   },
   "scripts": {
-    "lint": "jshint scripts/build.js",
+    "lint": "jshint scripts/*.js",
     "html": "node ./scripts/html.js",
     "html:prod": "node ./scripts/html.js prod",
     "watch:html": "watch 'npm run html' ./src/html",
-    "js": "browserify -d src/js/main.js -t babelify -t jstify > dist/js/main.js",
-    "watch:js": "watch 'npm run js' ./src/js",
+    "ts": "browserify -d src/ts/main.ts -p tsify -t [ jstify --engine 'lodash-micro' --minifierOpts [ --collapseWhitespace 0 ] ] > dist/js/main.js",
+    "watch:ts": "watch 'npm run ts' ./src/ts ./src/tpl",
     "open:dev": "opener http://localhost:9090",
     "serve": "http-server -p 9090 ./",
     "live-reload": "live-reload --port 9091 ./dist",
-    "dev": "npm run open:dev -s & parallelshell 'npm run live-reload -s' 'npm run serve -s' 'npm run watch:html' 'npm run watch:js'"
+    "dev": "npm run open:dev -s & parallelshell 'npm run live-reload -s' 'npm run serve -s' 'npm run watch:html' 'npm run watch:ts'"
   },
   "dependencies": {
     "interestjs": "0.1",
