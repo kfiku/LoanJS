@@ -1,0 +1,13 @@
+{
+  "page_title": "Kalkulator Kredytowy",
+  "page_description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, praesentium, nulla. Ipsum unde, dolorum ex id perspiciatis modi animi possimus, neque nulla alias repudiandae fuga inventore eaque quaerat deserunt quos.",
+  "credit_amount": "Kwota kredytu",
+  "installments_quantity": "Ilość rat",
+  "interest": "Oprocentowanie",
+  "equal_installments": "Raty równe",
+  "decreasing_installments": "Raty malejce",
+  "interest_sum": "Suma odsetek",
+  "installment_amount": "Wysokość raty",
+  "first_installment_amount": "Pierwsza rata",
+  "last_installment_amount": "Ostatnia rata"
+}

@@ -2,20 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><%= trans.page_title %></title>
+  <title>Kalkulator Kredytowy</title>
 </head>
 <body>
-  <h1><%= trans.page_title %></h1>
+  <header class="page-header">
+    <h1 class="page-header__title">Kalkulator Kredytowy</h1>
+    <p class="page-header__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, praesentium, nulla. Ipsum unde, dolorum ex id perspiciatis modi animi possimus, neque nulla alias repudiandae fuga inventore eaque quaerat deserunt quos.</p>
+  </header>
+
   <table>
     <thead>
       <tr>
         <th rowspan="2">#</th>
         <th rowspan="2">Kwota kredytu</th>
-        <th rowspan="2">Ilość lat</th>
-        <th rowspan="2">Oprocentoiwanie</th>
+        <th rowspan="2">Ilość rat</th>
+        <th rowspan="2">Oprocentowanie</th>
         <th colspan="2" class="text-center">Raty równe</th>
         <th colspan="3" class="text-center">Raty malejce</th>
-        <th rowspan="2"></th>
       </tr>
       <tr>
         <th>Suma odsetek</th>
@@ -24,12 +27,17 @@
         <th>Pierwsza rata</th>
         <th>Ostatnia rata</th>
       </tr>
-  </thead>
+    </thead>
+    <tbody id="mainTbody">
+
+    </tbody>
   </table>
 
-  <% if (env === 'dev') { %>
+
+  <script src="js/main.js"></script>
+  
     <script>console.log('::LIVERELOAD::');</script>
     <script src="//localhost:9091"></script>
-  <% } %>
+  
 </body>
 </html>

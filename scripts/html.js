@@ -9,21 +9,35 @@ let getTrans = require('./trans');
 
 let transes = getTrans();
 
-let indexTpm = _.template(fs.readFileSync(__dirname + '/../templates/index.tpl', 'utf8'));
 
-for (let i = 0; i < transes.length; i++) {
-  let lang = transes[i].lang;
-  let trans = transes[i].trans;
 
-  let tplData = {
-    env,
-    trans: trans
-  };
+var render = (file, tpl, data) => {
+  for (let i = 0; i < transes.length; i++) {
+    let lang    = transes[i].lang;
+    let trans   = transes[i].trans;
+    let tplData = { data, env, trans, assetsBase: '' };
 
-  if (lang === 'en') {
-    fs.writeFileSync('./index.html', indexTpm(tplData));
-  } else {
-    fs.writeFileSync(`./index_${lang}.html`, indexTpm(tplData));
+
+    if (lang === 'en' && file === 'index') {
+      // console.log(`render ${file}.html`);
+      tplData.assetsBase = 'dist/'
+      fs.writeFileSync(`./${file}.html`, tpl(tplData));
+    } else {
+      // console.log(`render ${file}_${lang}.html`);
+      fs.writeFileSync(`./dist/${file}_${lang}.html`, tpl(tplData));
+    }
   }
 }
+
+var dirs = fs.readdirSync('./src/html');
+
+for (var i = 0; i < dirs.length; i++) {
+  var fileBaseName = dirs[i].replace('.tpl', '')
+  var file         = `./src/html/${dirs[i]}`
+  let tpm          = _.template(fs.readFileSync(file, 'utf8'));
+
+  render(fileBaseName, tpm);
+}
+
+
 

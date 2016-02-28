@@ -4,7 +4,7 @@ let fs = require('fs');
 
 module.exports = function () {
   let trans = [];
-  let transDir = './trans';
+  let transDir = './src/trans';
 
   let transFiles = fs.readdirSync(transDir);
   for (let i = 0; i < transFiles.length; i++) {

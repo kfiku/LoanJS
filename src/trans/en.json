@@ -1,0 +1,13 @@
+{
+  "page_title": "Credit calculator",
+  "page_description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet ab eum blanditiis molestiae iusto, aliquid ducimus quis veritatis doloribus earum veniam libero, asperiores tempore? Quisquam suscipit, autem illum qui hic.",
+  "credit_amount": "Credit amount",
+  "installments_quantity": "Installments quantity",
+  "interest": "Interest",
+  "equal_installments": "Equal installments",
+  "decreasing_installments": "Decreasing installments",
+  "interest_sum": "Interest sum",
+  "installment_amount": "Installments amount",
+  "first_installment_amount": "First installment",
+  "last_installment_amount": "Last installment"
+}
