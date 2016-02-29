@@ -9,5 +9,6 @@
   "interest_sum": "Interest sum",
   "installment_amount": "Installments amount",
   "first_installment_amount": "First installment",
-  "last_installment_amount": "Last installment"
+  "last_installment_amount": "Last installment",
+  "add_new_row": "Add new to compare"
 }
