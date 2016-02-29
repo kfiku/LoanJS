@@ -91,7 +91,6 @@ export class CompareRow extends EventEmitter {
   }
 
   onRemove() {
-    console.log(this.el);
     this.el.parentNode.removeChild(this.el);
     this.emit('remove');
   }
