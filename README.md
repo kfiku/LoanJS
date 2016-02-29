@@ -197,6 +197,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+#### 2016-02-29 v0.1.4
+ * update dependencies
+
 #### 2015-10-12 v0.1.3
  * fixing typo intrest -> interest [#3](https://github.com/kfiku/LoanJS/issues/3)
  * update dependencies
