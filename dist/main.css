@@ -1,3 +1,81 @@
+/*-- Defaults --*/
+body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+
+  background: linear-gradient(to bottom, #ddd 0%, #fff 600px);
+}
+
+a {
+  color: #800;
+}
+
+button {
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 6px 12px;
+}
+
+input {
+  width: 80px;
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 6px 12px;
+}
+
+hr {
+  margin: 16px 0;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+}
+
+.no-border {
+  border: 0;
+}
+
+.tc { text-align: center; }
+
+
+/*-- Header --*/
+.page-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+/*-- Table --*/
+.table-responsive {
+  width: 100%;
+  margin-bottom: 15px;
+  overflow-y: hidden;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead {
+  font-size: 0.75em;
+  vertical-align: bottom;
+}
+th {
+  border-bottom: 2px solid #444;
+}
+
+td, th {
+  text-align: center;
+  padding: 8px;
+}
+
+.table-hr {
+  border-right: 1px solid #aaa;
+}
+
+
+
 /*-- Chart --*/
 .c3 svg {
   font: 10px sans-serif;
