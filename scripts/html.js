@@ -15,7 +15,7 @@ var render = (file, tpl, data) => {
   for (let i = 0; i < transes.length; i++) {
     let lang    = transes[i].lang;
     let trans   = transes[i].trans;
-    let tplData = { data, env, trans, assetsBase: '' };
+    let tplData = { lang, data, env, trans, assetsBase: '' };
 
 
     if (lang === 'en' && file === 'index') {
