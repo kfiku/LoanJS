@@ -1,7 +1,9 @@
 import { CompareRow } from './Row';
+import { CompareChart } from './Chart';
 
 export class CompareList {
   el;
+  chart: CompareChart;
   rows: CompareRow[] = [];
   addNewBtn;
 
@@ -10,6 +12,7 @@ export class CompareList {
     this.addNewBtn = document.querySelector('#addCompareRow');
     this.addNewBtn.addEventListener('click', () => this.addNewRow())
 
+    this.chart = new CompareChart();
     this.render();
   }
 
@@ -29,6 +32,8 @@ export class CompareList {
 
   render() {
     this.getData().forEach((el) => this.addNewRow(el));
+
+    this.chart.render(this.rows);
   }
 
   addNewRow (el: any = { amount: 100000, quantity: 360, interest: 3.5 }) {
@@ -38,7 +43,7 @@ export class CompareList {
     this.rows.push(cr);
     this.el.appendChild(cr.el);
 
-    cr.on('change', () => this.save());
+    cr.on('change', () => this.onRowChange());
     cr.on('remove', () => this.onRowRemove(cr));
 
     this.save();
@@ -56,10 +61,19 @@ export class CompareList {
     });
 
     localStorage.setItem('compate', JSON.stringify(list));
+
+
+    this.chart.render(this.rows);
+  }
+
+  onRowChange () {
+    this.save();
   }
 
   onRowRemove (cr: CompareRow) {
     this.rows.splice(cr.data.id, 1);
     this.save();
+
+    this.chart.unload(cr.data.id);
   }
 };

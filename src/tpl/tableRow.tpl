@@ -5,8 +5,12 @@
   <td><input class="interest" type="text" value="<%= data.interest %>"></td>
   <td><span class="equalInterestSum"><%= data.equalInterestSum %></span></td>
   <td><span class="equalInstallmentAmount"><%= data.equalInstallmentAmount %></span></td>
+  <td><button class="equalDetails"><%= trans.details %></button></td>
   <td><span class="diminishingInterestsSum"><%= data.diminishingInterestsSum %></span></td>
   <td><span class="diminishingFirstInstallmentAmount"><%= data.diminishingFirstInstallmentAmount %></span></td>
   <td><span class="diminishingLastInstallmentAmount"><%= data.diminishingLastInstallmentAmount %></span></td>
-  <td><button class="remove">X</button></td>
+  <td><button class="diminishingDetails"><%= trans.details %></button></td>
+  <td>
+    <button class="remove">X</button>
+  </td>
 <!--</tr>-->

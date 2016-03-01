@@ -10,5 +10,6 @@
   "installment_amount": "Installments amount",
   "first_installment_amount": "First installment",
   "last_installment_amount": "Last installment",
+  "details": "Details",
   "add_new_row": "Add new to compare"
 }

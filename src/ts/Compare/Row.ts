@@ -1,10 +1,14 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 import { EventEmitter } from 'events';
 let tpl =  require('../../tpl/tableRow.tpl');
-let Loan =  require('loanjs').Loan;
+let LoanJS =  require('loanjs');
+let Loan = LoanJS.Loan;
 
 export class CompareRow extends EventEmitter {
   el;
+  details;
+  currentDetails;
+
   amount: HTMLInputElement;
   quantity: HTMLInputElement;
   interest: HTMLInputElement;
@@ -17,6 +21,8 @@ export class CompareRow extends EventEmitter {
   diminishingLastInstallmentAmount: HTMLSpanElement;
 
   removeBtn: HTMLButtonElement;
+  equalDetailsBtn: HTMLButtonElement;
+  diminishingDetailsBtn: HTMLButtonElement;
 
   constructor(public data) {
     super();
@@ -27,7 +33,7 @@ export class CompareRow extends EventEmitter {
   render() {
     if(!this.el) {
       this.el = document.createElement('tr');
-      this.el.innerHTML = tpl({data: this.data});
+      this.el.innerHTML = tpl({data: this.data, trans: window['trans']});
 
       this.amount = this.el.querySelector('.amount');
       this.quantity = this.el.querySelector('.quantity');
@@ -46,6 +52,12 @@ export class CompareRow extends EventEmitter {
 
       this.removeBtn = this.el.querySelector('.remove');
       this.removeBtn.addEventListener('click', () => this.onRemove());
+
+      this.equalDetailsBtn = this.el.querySelector('.equalDetails');
+      this.equalDetailsBtn.addEventListener('click', () => this.onDetails());
+
+      this.diminishingDetailsBtn = this.el.querySelector('.diminishingDetails');
+      this.diminishingDetailsBtn.addEventListener('click', () => this.onDetails(true));
     }
 
     // counting loan
@@ -55,9 +67,9 @@ export class CompareRow extends EventEmitter {
     this.data.equalInterestSum = this.data.equalLoan.interestSum;
     this.data.equalInstallmentAmount = this.data.equalLoan.installments[0].installment;
 
-    this.data.diminishingInterestsSum = this.data.equalLoan.interestSum;
-    this.data.diminishingFirstInstallmentAmount = this.data.equalLoan.installments[0].installment;
-    this.data.diminishingLastInstallmentAmount = this.data.equalLoan.installments[this.data.diminishingLoan.installments.length - 1].installment;
+    this.data.diminishingInterestsSum = this.data.diminishingLoan.interestSum;
+    this.data.diminishingFirstInstallmentAmount = this.data.diminishingLoan.installments[0].installment;
+    this.data.diminishingLastInstallmentAmount = this.data.diminishingLoan.installments[this.data.diminishingLoan.installments.length - 1].installment;
 
     // Setting InnerHTML of elements
     this.equalInterestSum.innerHTML                  = this.data.equalInterestSum;
@@ -92,6 +104,33 @@ export class CompareRow extends EventEmitter {
 
   onRemove() {
     this.el.parentNode.removeChild(this.el);
+    if(this.details) {
+      this.details.parentNode.removeChild(this.details);
+    }
     this.emit('remove');
+  }
+
+  onDetails(diminishing = false) {
+    if(!this.details) {
+      this.details = document.createElement('tr');
+      if (this.el.nextSibling) {
+        this.el.parentNode.insertBefore(this.details, this.el.nextSibling);
+      }
+      else {
+        this.el.parentNode.appendChild(this.details);
+      }
+    }
+
+    if(this.currentDetails === diminishing) {
+      this.details.parentNode.removeChild(this.details);
+      this.details = undefined;
+      this.currentDetails = undefined;
+      return;
+    }
+
+    this.currentDetails = diminishing;
+
+    let loan = diminishing ? this.data.diminishingLoan : this.data.equalLoan;
+    this.details.innerHTML = '<td colspan="11">'+ LoanJS.loanToHtmlTable(loan) +'</td>'
   }
 };

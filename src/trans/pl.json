@@ -10,5 +10,6 @@
   "installment_amount": "Wysokość raty",
   "first_installment_amount": "Pierwsza rata",
   "last_installment_amount": "Ostatnia rata",
+  "details": "Szczegóły",
   "add_new_row": "Dodaj nowe by porównać"
 }
