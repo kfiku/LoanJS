@@ -3,41 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title>Kalkulator Kredytowy</title>
+
+  <meta name="viewport" content="width=device-width">
+
+  <link rel="stylesheet" href="main.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 <body>
+
   <header class="page-header">
     <h1 class="page-header__title">Kalkulator Kredytowy</h1>
     <p class="page-header__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, praesentium, nulla. Ipsum unde, dolorum ex id perspiciatis modi animi possimus, neque nulla alias repudiandae fuga inventore eaque quaerat deserunt quos.</p>
+
+    <iframe src="https://ghbtns.com/github-btn.html?user=kfiku&repo=LoanJS&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+    <iframe src="https://ghbtns.com/github-btn.html?user=kfiku&repo=LoanJS&type=fork&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+
+
   </header>
 
-  <table>
-    <thead>
-      <tr>
-        <th rowspan="2">#</th>
-        <th rowspan="2">Kwota kredytu</th>
-        <th rowspan="2">Ilość rat</th>
-        <th rowspan="2">Oprocentowanie</th>
-        <th colspan="2" class="text-center">Raty równe</th>
-        <th colspan="3" class="text-center">Raty malejce</th>
-      </tr>
-      <tr>
-        <th>Suma odsetek</th>
-        <th>Wysokość raty</th>
-        <th>Suma odsetek</th>
-        <th>Pierwsza rata</th>
-        <th>Ostatnia rata</th>
-      </tr>
-    </thead>
-    <tbody id="mainTbody">
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2">#</th>
+          <th rowspan="2">Kwota kredytu</th>
+          <th rowspan="2">Ilość lat</th>
+          <th rowspan="2" class="table-hr">Oprocentowanie w skali roku</th>
+          <th colspan="3" class="table-hr no-border">Raty równe</th>
+          <th colspan="4" class="table-hr no-border">Raty malejce</th>
+          <th rowspan="2"></th>
+        </tr>
+        <tr>
+          <th>Suma odsetek</th>
+          <th>Wysokość raty</th>
+          <th class="table-hr"></th>
+          <th>Suma odsetek</th>
+          <th>Pierwsza rata</th>
+          <th>Ostatnia rata</th>
+          <th class="table-hr"></th>
+        </tr>
+      </thead>
+      <tbody id="mainTbody">
 
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 
+  <div class="tc">
+    <button id="addCompareRow">Dodaj nowe by porównać</button>
+  </div>
 
+  <hr>
+
+  <div id="chart"></div>
+
+  <hr>
+
+  <p class="tc">© Grzegorz Klimek 2016</p>
+
+  <script>
+    var lang = 'pl'
+    var trans = {"page_title":"Kalkulator Kredytowy","page_description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, praesentium, nulla. Ipsum unde, dolorum ex id perspiciatis modi animi possimus, neque nulla alias repudiandae fuga inventore eaque quaerat deserunt quos.","credit_amount":"Kwota kredytu","installments_quantity":"Ilość lat","interest":"Oprocentowanie w skali roku","equal_installments":"Raty równe","diminishing_installments":"Raty malejce","interest_sum":"Suma odsetek","installment_amount":"Wysokość raty","first_installment_amount":"Pierwsza rata","last_installment_amount":"Ostatnia rata","details":"Szczegóły","add_new_row":"Dodaj nowe by porównać"}
+  </script>
   <script src="js/main.js"></script>
-  
-    <script>console.log('::LIVERELOAD::');</script>
-    <script src="//localhost:9091"></script>
+
   
 </body>
 </html>
