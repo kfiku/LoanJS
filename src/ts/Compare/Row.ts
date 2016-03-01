@@ -1,5 +1,7 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 import { EventEmitter } from 'events';
+import * as money from '../helpers/money';
+
 let tpl =  require('../../tpl/tableRow.tpl');
 let LoanJS =  require('loanjs');
 let Loan = LoanJS.Loan;
@@ -61,8 +63,8 @@ export class CompareRow extends EventEmitter {
     }
 
     // counting loan
-    this.data.equalLoan = new Loan(this.data.amount, this.data.quantity, this.data.interest);
-    this.data.diminishingLoan = new Loan(this.data.amount, this.data.quantity, this.data.interest, true);
+    this.data.equalLoan = new Loan(this.data.amount, Number(this.data.quantity)*12, this.data.interest);
+    this.data.diminishingLoan = new Loan(this.data.amount, Number(this.data.quantity)*12, this.data.interest, true);
 
     this.data.equalInterestSum = this.data.equalLoan.interestSum;
     this.data.equalInstallmentAmount = this.data.equalLoan.installments[0].installment;
@@ -72,15 +74,22 @@ export class CompareRow extends EventEmitter {
     this.data.diminishingLastInstallmentAmount = this.data.diminishingLoan.installments[this.data.diminishingLoan.installments.length - 1].installment;
 
     // Setting InnerHTML of elements
-    this.equalInterestSum.innerHTML                  = this.data.equalInterestSum;
-    this.equalInstallmentAmount.innerHTML            = this.data.equalInstallmentAmount;
+    this.equalInterestSum.innerHTML                  = money(this.data.equalInterestSum);
+    this.equalInstallmentAmount.innerHTML            = money(this.data.equalInstallmentAmount);
 
-    this.diminishingInterestsSum.innerHTML           = this.data.diminishingInterestsSum;
-    this.diminishingFirstInstallmentAmount.innerHTML = this.data.diminishingFirstInstallmentAmount;
-    this.diminishingLastInstallmentAmount.innerHTML  = this.data.diminishingLastInstallmentAmount;
+    this.diminishingInterestsSum.innerHTML           = money(this.data.diminishingInterestsSum);
+    this.diminishingFirstInstallmentAmount.innerHTML = money(this.data.diminishingFirstInstallmentAmount);
+    this.diminishingLastInstallmentAmount.innerHTML  = money(this.data.diminishingLastInstallmentAmount);
 
-
+    if(this.currentDetails !== undefined) {
+      this.renderDetails(this.currentDetails);
+    }
     return this;
+  }
+
+  renderDetails (diminishing) {
+    let loan = diminishing ? this.data.diminishingLoan : this.data.equalLoan;
+    this.details.innerHTML = '<td colspan="11">'+ LoanJS.loanToHtmlTable(loan, {formatMoney: money}) +'</td>'
   }
 
   listenField (field: HTMLInputElement) {
@@ -130,7 +139,6 @@ export class CompareRow extends EventEmitter {
 
     this.currentDetails = diminishing;
 
-    let loan = diminishing ? this.data.diminishingLoan : this.data.equalLoan;
-    this.details.innerHTML = '<td colspan="11">'+ LoanJS.loanToHtmlTable(loan) +'</td>'
+    this.renderDetails(diminishing);
   }
 };

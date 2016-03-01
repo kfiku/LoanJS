@@ -3,6 +3,7 @@ import { CompareChart } from './Chart';
 
 export class CompareList {
   el;
+  toid;
   chart: CompareChart;
   rows: CompareRow[] = [];
   addNewBtn;
@@ -19,7 +20,10 @@ export class CompareList {
   getData() {
     let list = localStorage.getItem('compate');
     if (!list) {
-      list = '[{}]';
+      list = `[
+        { "amount": 5000, "quantity": 10, "interest": 5 },
+        { "amount": 5000, "quantity": 8, "interest": 5 }
+      ]`;
     }
     try {
       list = JSON.parse(list);
@@ -31,12 +35,12 @@ export class CompareList {
   }
 
   render() {
-    this.getData().forEach((el) => this.addNewRow(el));
+    this.getData().forEach((el) => this.addNewRow(el, true));
 
     this.chart.render(this.rows);
   }
 
-  addNewRow (el: any = { amount: 100000, quantity: 360, interest: 3.5 }) {
+  addNewRow (el: any = { amount: 5000, quantity: 10, interest: 5 }, init = false) {
     el.id = this.rows.length;
     let cr = new CompareRow(el);
 
@@ -46,7 +50,9 @@ export class CompareList {
     cr.on('change', () => this.onRowChange());
     cr.on('remove', () => this.onRowRemove(cr));
 
-    this.save();
+    if(!init) {
+      this.save();
+    }
   }
 
   save () {
@@ -62,8 +68,8 @@ export class CompareList {
 
     localStorage.setItem('compate', JSON.stringify(list));
 
-
-    this.chart.render(this.rows);
+    clearTimeout(this.toid);
+    this.toid = setTimeout(() => this.chart.render(this.rows), 250);
   }
 
   onRowChange () {
