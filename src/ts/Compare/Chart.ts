@@ -1,5 +1,6 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 import { CompareRow } from './Row';
+import * as money from '../helpers/money';
 
 let c3 =  require('c3');
 
@@ -11,31 +12,47 @@ export class CompareChart {
   }
 
   render(rows: CompareRow[]) {
-    let cols = [];
+    let t = window['trans'];
+    let cols = [
+      [`${t.equal_installments} ${t.interest_sum}`],
+      [`${t.equal_installments} ${t.installment_amount}`],
+
+      [`${t.diminishing_installments} ${t.interest_sum}`],
+      [`${t.diminishing_installments} ${t.first_installment_amount}`],
+      [`${t.diminishing_installments} ${t.last_installment_amount}`]
+    ];
 
     rows.forEach((row) => {
-      let col1 = ['loan ' + row.data.id + ' capital'];
-      let col2 = ['loan ' + row.data.id + ' interest'];
+      cols[0].push(row.data.equalInterestSum);
+      cols[1].push(row.data.equalInstallmentAmount);
 
-      row.data.equalLoan.installments.forEach((inst, id) => {
-        // console.log(col[id-1], inst.capital)
-        col1.push((inst.capital[id-1] || 0) + inst.capital);
-        col2.push((inst.interest[id-1] || 0) + inst.interest);
-      });
-
-      cols.push(col1);
-      cols.push(col2);
+      cols[2].push(row.data.diminishingInterestsSum);
+      cols[3].push(row.data.diminishingFirstInstallmentAmount);
+      cols[4].push(row.data.diminishingLastInstallmentAmount);
     });
 
     if(!this.chart) {
       this.chart = c3.generate({
           bindto: '#chart',
           data: {
-            columns: cols
+            columns: cols,
+            type: 'bar',
           },
-          tooltip: {show: false},
-          point: {show: false},
-          type: 'spline',
+          axis : {
+            x : { tick: { format: function (x) { return x + 1; } } },
+            y : { tick: { format: function (y) { return money(y); } } }
+          },
+          // tooltip: {show: false},
+          // point: {show: false},
+          bar: {
+            width: {
+              ratio: 0.5 // this makes bar width 50% of length between ticks
+            }
+          },
+          grid: {
+            x: { show: true },
+            y: { show: true }
+          }
       });
     }
 

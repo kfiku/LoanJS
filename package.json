@@ -39,6 +39,7 @@
     "lodash": "^4.5.1",
     "lodash.escape": "^4.0.0",
     "node-sass": "latest",
+    "numeral": "^1.5.3",
     "opener": "^1.4.1",
     "parallelshell": "^2.0.0",
     "tsify": "^0.13.2",
@@ -54,7 +55,7 @@
     "open:dev": "opener http://localhost:9090",
     "serve": "http-server -p 9090 ./",
     "live-reload": "live-reload --port 9091 ./dist",
-    "dev": "npm run open:dev -s & parallelshell 'npm run live-reload -s' 'npm run serve -s' 'npm run watch:html' 'npm run watch:ts'"
+    "dev": "parallelshell 'npm run live-reload' 'npm run serve' 'npm run watch:html' 'npm run watch:ts' 'npm run open:dev'"
   },
   "dependencies": {
     "interestjs": "0.1",

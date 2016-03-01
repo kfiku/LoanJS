@@ -2,49 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Credit calculator</title>
-  <link href="dist/c3.css" rel="stylesheet" type="text/css">
+  <title>LoanJs credit calculator and comparison</title>
+
+  <meta name="viewport" content="width=device-width">
+
+  <link rel="stylesheet" href="dist/main.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 </head>
 <body>
+
   <header class="page-header">
-    <h1 class="page-header__title">Credit calculator</h1>
-    <p class="page-header__desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet ab eum blanditiis molestiae iusto, aliquid ducimus quis veritatis doloribus earum veniam libero, asperiores tempore? Quisquam suscipit, autem illum qui hic.</p>
+    <h1 class="page-header__title">LoanJs credit calculator and comparison</h1>
+    <p class="page-header__desc">Here you can calculate your load and compare difference scenarios. All made by <a href="https://github.com/kfiku/LoanJS">LoanJs</a> library</p>
+
+    <iframe src="https://ghbtns.com/github-btn.html?user=kfiku&repo=LoanJS&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+    <iframe src="https://ghbtns.com/github-btn.html?user=kfiku&repo=LoanJS&type=fork&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+
+
   </header>
 
-  <table>
-    <thead>
-      <tr>
-        <th rowspan="2">#</th>
-        <th rowspan="2">Credit amount</th>
-        <th rowspan="2">Installments quantity</th>
-        <th rowspan="2">Interest</th>
-        <th colspan="3" class="text-center">Equal installments</th>
-        <th colspan="4" class="text-center">Diminishing installments</th>
-        <th rowspan="2"></th>
-      </tr>
-      <tr>
-        <th>Interest sum</th>
-        <th>Installments amount</th>
-        <th></th>
-        <th>Interest sum</th>
-        <th>First installment</th>
-        <th>Last installment</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="mainTbody">
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2">#</th>
+          <th rowspan="2">Loan amount</th>
+          <th rowspan="2">in years</th>
+          <th rowspan="2" class="table-hr">interest / year</th>
+          <th colspan="3" class="table-hr no-border">Equal installments</th>
+          <th colspan="4" class="table-hr no-border">Diminishing installments</th>
+          <th rowspan="2"></th>
+        </tr>
+        <tr>
+          <th>total interest </th>
+          <th>payment</th>
+          <th class="table-hr"></th>
+          <th>total interest </th>
+          <th>first payment</th>
+          <th>last payment</th>
+          <th class="table-hr"></th>
+        </tr>
+      </thead>
+      <tbody id="mainTbody">
 
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 
-  <button id="addCompareRow">Add new to compare</button>
+  <div class="tc">
+    <button id="addCompareRow">Add new to compare</button>
+  </div>
+
+  <hr>
 
   <div id="chart"></div>
 
+  <hr>
+
+  <p class="tc">© Grzegorz Klimek 2016</p>
+
   <script>
-    var trans = {"page_title":"Credit calculator","page_description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet ab eum blanditiis molestiae iusto, aliquid ducimus quis veritatis doloribus earum veniam libero, asperiores tempore? Quisquam suscipit, autem illum qui hic.","credit_amount":"Credit amount","installments_quantity":"Installments quantity","interest":"Interest","equal_installments":"Equal installments","diminishing_installments":"Diminishing installments","interest_sum":"Interest sum","installment_amount":"Installments amount","first_installment_amount":"First installment","last_installment_amount":"Last installment","details":"Details","add_new_row":"Add new to compare"}
+    var lang = 'en'
+    var trans = {"page_title":"LoanJs credit calculator and comparison","page_description":"Here you can calculate your load and compare difference scenarios. All made by <a href=\"https://github.com/kfiku/LoanJS\">LoanJs</a> library","credit_amount":"Loan amount","installments_quantity":"in years","interest":"interest / year","equal_installments":"Equal installments","diminishing_installments":"Diminishing installments","interest_sum":"total interest ","installment_amount":"payment","first_installment_amount":"first payment","last_installment_amount":"last payment","details":"Details","add_new_row":"Add new to compare"}
   </script>
   <script src="dist/js/main.js"></script>
+
   
     <script>console.log('::LIVERELOAD::');</script>
     <script src="//localhost:9091"></script>
