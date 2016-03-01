@@ -51,11 +51,13 @@
     "html:prod": "node ./scripts/html.js prod",
     "watch:html": "watch 'npm run html' ./src/html",
     "ts": "browserify -d src/ts/main.ts -p tsify -t [ jstify --engine 'lodash-micro' --minifierOpts [ --collapseWhitespace 0 ] ] > dist/js/main.js",
+    "ts:prod": "browserify src/ts/main.ts -p tsify -t [ jstify --engine 'lodash-micro' --minifierOpts [ --collapseWhitespace 0 ] ] > dist/js/main.js",
     "watch:ts": "watch 'npm run ts' ./src/ts ./src/tpl",
     "open:dev": "opener http://localhost:9090",
     "serve": "http-server -p 9090 ./",
     "live-reload": "live-reload --port 9091 ./dist",
-    "dev": "parallelshell 'npm run live-reload' 'npm run serve' 'npm run watch:html' 'npm run watch:ts' 'npm run open:dev'"
+    "dev": "parallelshell 'npm run live-reload' 'npm run serve' 'npm run watch:html' 'npm run watch:ts' 'npm run open:dev'",
+    "prod": "npm run ts:prod && npm run html:prod"
   },
   "dependencies": {
     "interestjs": "0.1",
