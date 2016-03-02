@@ -3,8 +3,8 @@ import { EventEmitter } from 'events';
 import * as money from '../helpers/money';
 
 let tpl =  require('../../tpl/tableRow.tpl');
-let LoanJS =  require('loanjs');
-let Loan = LoanJS.Loan;
+let loanjs =  require('loanjs');
+let loan = loanjs.Loan;
 
 export class CompareRow extends EventEmitter {
   el;
@@ -33,7 +33,7 @@ export class CompareRow extends EventEmitter {
   }
 
   render() {
-    if(!this.el) {
+    if (!this.el) {
       this.el = document.createElement('tr');
       this.el.innerHTML = tpl({data: this.data, trans: window['trans']});
 
@@ -63,8 +63,8 @@ export class CompareRow extends EventEmitter {
     }
 
     // counting loan
-    this.data.equalLoan = new Loan(this.data.amount, Number(this.data.quantity)*12, this.data.interest);
-    this.data.diminishingLoan = new Loan(this.data.amount, Number(this.data.quantity)*12, this.data.interest, true);
+    this.data.equalLoan = new loan(this.data.amount, Number(this.data.quantity) * 12, this.data.interest);
+    this.data.diminishingLoan = new loan(this.data.amount, Number(this.data.quantity) * 12, this.data.interest, true);
 
     this.data.equalInterestSum = this.data.equalLoan.interestSum;
     this.data.equalInstallmentAmount = this.data.equalLoan.installments[0].installment;
@@ -81,15 +81,15 @@ export class CompareRow extends EventEmitter {
     this.diminishingFirstInstallmentAmount.innerHTML = money(this.data.diminishingFirstInstallmentAmount);
     this.diminishingLastInstallmentAmount.innerHTML  = money(this.data.diminishingLastInstallmentAmount);
 
-    if(this.currentDetails !== undefined) {
+    if (this.currentDetails !== undefined) {
       this.renderDetails(this.currentDetails);
     }
     return this;
   }
 
   renderDetails (diminishing) {
-    let loan = diminishing ? this.data.diminishingLoan : this.data.equalLoan;
-    this.details.innerHTML = '<td colspan="11">'+ LoanJS.loanToHtmlTable(loan, {formatMoney: money}) +'</td>'
+    let l = diminishing ? this.data.diminishingLoan : this.data.equalLoan;
+    this.details.innerHTML = '<td colspan="11">' + loanjs.loanToHtmlTable(l, {formatMoney: money}) + '</td>';
   }
 
   listenField (field: HTMLInputElement) {
@@ -101,7 +101,7 @@ export class CompareRow extends EventEmitter {
     // console.log(e.keyCode);
 
     // KEYBOARD EVENT  NUMPAD                                   NUMB ERS                               BACKSPACE
-    if(e.keyCode && !((e.keyCode >= 96 && e.keyCode <= 105) || (e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode === 8)) {
+    if (e.keyCode && !((e.keyCode >= 96 && e.keyCode <= 105) || (e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode === 8)) {
       return;
     }
 
@@ -113,24 +113,23 @@ export class CompareRow extends EventEmitter {
 
   onRemove() {
     this.el.parentNode.removeChild(this.el);
-    if(this.details) {
+    if (this.details) {
       this.details.parentNode.removeChild(this.details);
     }
     this.emit('remove');
   }
 
   onDetails(diminishing = false) {
-    if(!this.details) {
+    if (!this.details) {
       this.details = document.createElement('tr');
       if (this.el.nextSibling) {
         this.el.parentNode.insertBefore(this.details, this.el.nextSibling);
-      }
-      else {
+      } else {
         this.el.parentNode.appendChild(this.details);
       }
     }
 
-    if(this.currentDetails === diminishing) {
+    if (this.currentDetails === diminishing) {
       this.details.parentNode.removeChild(this.details);
       this.details = undefined;
       this.currentDetails = undefined;

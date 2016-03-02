@@ -11,7 +11,7 @@ export class CompareList {
   constructor() {
     this.el = document.querySelector('#mainTbody');
     this.addNewBtn = document.querySelector('#addCompareRow');
-    this.addNewBtn.addEventListener('click', () => this.addNewRow())
+    this.addNewBtn.addEventListener('click', () => this.addNewRow());
 
     this.chart = new CompareChart();
     this.render();
@@ -50,7 +50,7 @@ export class CompareList {
     cr.on('change', () => this.onRowChange());
     cr.on('remove', () => this.onRowRemove(cr));
 
-    if(!init) {
+    if (!init) {
       this.save();
     }
   }
@@ -63,7 +63,7 @@ export class CompareList {
         amount: row.data.amount,
         quantity: row.data.quantity,
         interest: row.data.interest
-      })
+      });
     });
 
     localStorage.setItem('compate', JSON.stringify(list));

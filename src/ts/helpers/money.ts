@@ -4,7 +4,7 @@ let numeral = require('numeral');
 let format = {
   pl: '0,0.00 $',
   en: '$0,0.00'
-}
+};
 
 numeral.language('pl', {
     delimiters: {

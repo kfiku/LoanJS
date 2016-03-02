@@ -7,10 +7,6 @@ let c3 =  require('c3');
 export class CompareChart {
   chart;
 
-  constructor() {
-
-  }
-
   render(rows: CompareRow[]) {
     let t = window['trans'];
     let cols = [
@@ -31,7 +27,7 @@ export class CompareChart {
       cols[4].push(row.data.diminishingLastInstallmentAmount);
     });
 
-    if(!this.chart) {
+    if (!this.chart) {
       this.chart = c3.generate({
           bindto: '#chart',
           data: {
@@ -54,18 +50,16 @@ export class CompareChart {
             y: { show: true }
           }
       });
-    }
-
-    else {
+    } else {
       this.chart.load({
         columns: cols
-      })
+      });
     }
   }
 
   unload (id) {
     this.chart.unload({
       ids: ['loan ' + id + ' capital', 'loan ' + id + ' interest']
-    })
+    });
   }
 };
