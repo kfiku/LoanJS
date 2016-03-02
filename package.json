@@ -46,7 +46,7 @@
     "watch": "^0.17.1"
   },
   "scripts": {
-    "lint": "jshint scripts/*.js",
+    "lint": "jshint scripts/*.js && tslint src/ts/**/*.ts ",
     "html": "node ./scripts/html.js",
     "html:prod": "node ./scripts/html.js prod",
     "watch:html": "watch 'npm run html' ./src/html",
