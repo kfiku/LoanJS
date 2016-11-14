@@ -1,4 +1,3 @@
-/// <reference path="../../../typings/tsd.d.ts" />
 import { EventEmitter } from 'events';
 import * as money from '../helpers/money';
 

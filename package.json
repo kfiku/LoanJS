@@ -30,6 +30,9 @@
     "intrerest"
   ],
   "devDependencies": {
+    "@types/c3": "^0.4.37",
+    "@types/node": "^6.0.46",
+    "@types/numeral": "0.0.18",
     "browserify": "latest",
     "c3": "^0.4.11-rc4",
     "http-server": "^0.9.0",
@@ -42,8 +45,9 @@
     "numeral": "^1.5.3",
     "opener": "^1.4.1",
     "parallelshell": "^2.0.0",
-    "tsify": "^0.13.2",
+    "tsify": "^2.0.2",
     "tslint": "^3.5.0",
+    "typescript": "^2.0.9",
     "watch": "^0.17.1"
   },
   "scripts": {

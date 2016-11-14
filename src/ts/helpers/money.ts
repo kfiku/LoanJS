@@ -1,6 +1,4 @@
-/// <reference path="../../../typings/tsd.d.ts" />
-
-let numeral = require('numeral');
+const numeral = require('numeral');
 let format = {
   pl: '0,0.00 $',
   en: '$0,0.00'

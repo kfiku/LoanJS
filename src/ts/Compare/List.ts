@@ -18,15 +18,16 @@ export class CompareList {
   }
 
   getData() {
-    let list = localStorage.getItem('compate');
-    if (!list) {
-      list = `[
-        { "amount": 5000, "quantity": 10, "interest": 5 },
-        { "amount": 5000, "quantity": 8, "interest": 5 }
-      ]`;
-    }
+    let list: { amount: number, quantity: number, interest: number }[];
+    let listJson: string = localStorage.getItem('compate');
     try {
-      list = JSON.parse(list);
+      list = JSON.parse(listJson);
+      if (!list.length) {
+        list = [
+          { amount: 5000, quantity: 10, interest: 5 },
+          { amount: 5000, quantity: 8, interest: 5 }
+        ];
+      }
     } catch (e) {
       list = [];
     }

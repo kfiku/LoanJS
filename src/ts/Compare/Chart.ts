@@ -1,8 +1,7 @@
-/// <reference path="../../../typings/tsd.d.ts" />
 import { CompareRow } from './Row';
 import * as money from '../helpers/money';
 
-let c3 =  require('c3');
+import * as c3 from 'c3';
 
 export class CompareChart {
   chart;
@@ -35,7 +34,7 @@ export class CompareChart {
             type: 'bar',
           },
           axis : {
-            x : { tick: { format: function (x) { return x + 1; } } },
+            x : { tick: { format: function (x) { return Number(x) + 1; } } },
             y : { tick: { format: function (y) { return money(y); } } }
           },
           // tooltip: {show: false},
