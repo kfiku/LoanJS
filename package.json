@@ -1,6 +1,6 @@
 {
   "name": "loanjs",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "main": "LoanJS.js",
   "description": "Calculate loan in js (browser/node.js) for equal installments, installments decreasing, the sum of interest, etc.",
   "homepage": "https://github.com/kfiku/LoanJS",
@@ -30,18 +30,12 @@
     "intrerest"
   ],
   "devDependencies": {
-    "grunt": "~1.0.1",
-    "grunt-contrib-jshint": "^1",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-mocha-cli": "^3.0.0",
-    "jshint-stylish": "^2",
-    "load-grunt-tasks": "^3.3.0",
-    "time-grunt": "^1.0.0"
+    "jest": "^19.0.2",
+    "mocha": "^3.2.0",
+    "standard": "^9.0.2"
   },
   "scripts": {
-    "grunt": "grunt",
-    "test": "grunt",
-    "browser": "browserify LoanJS.js > browser.js"
+    "test": "jest"
   },
   "dependencies": {
     "interestjs": "0.1.0"
