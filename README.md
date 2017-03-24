@@ -4,6 +4,7 @@
 
 > Calculate best loan screnario (loan + interest/savings)
 
+[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
 ## Getting Started
 

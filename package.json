@@ -35,7 +35,7 @@
     "standard": "^9.0.2"
   },
   "scripts": {
-    "test": "jest"
+    "test": "standard && jest"
   },
   "dependencies": {
     "interestjs": "0.1.0"
