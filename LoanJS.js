@@ -7,11 +7,10 @@
  * Licensed under the MIT license.
  */
 
-(function() {
+(function () {
   module.exports = {
     Loan: require('./lib/loan'),
     BestLoan: require('./lib/bestLoan'),
-    loanToHtmlTable: require('./lib/loanToHtmlTable'),
-  };
-}());
-
+    loanToHtmlTable: require('./lib/loanToHtmlTable')
+  }
+}())
