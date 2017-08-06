@@ -1,7 +1,7 @@
 # LoanJS 
 [![NPM version](https://badge.fury.io/js/loanjs.png?style=flat)](http://badge.fury.io/js/loanjs)
 [![Build Status](https://travis-ci.org/kfiku/LoanJS.svg)](https://travis-ci.org/kfiku/LoanJS) [![Dependency Status](https://david-dm.org/kfiku/LoanJS/dev-status.svg)](https://david-dm.org/kfiku/loanjs)
-[![Coverage Status](https://coveralls.io/repos/github/kfiku/LoanJS/badge.svg)](https://coveralls.io/github/kfiku/LoanJS)
+[![Coverage Status](https://coveralls.io/repos/github/kfiku/LoanJS/badge.svg?branch=es6)](https://coveralls.io/github/kfiku/LoanJS?branch=es6)
 
 > Calculate loan in js (browser/node.js/browserify) for equal installments, installments decreasing, the sum of interest, etc.
 Calculate best loan screnario (loan + interest/savings)
