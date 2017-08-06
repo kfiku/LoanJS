@@ -30,14 +30,12 @@
     "intrerest"
   ],
   "devDependencies": {
+    "coveralls": "^2.13.1",
     "jest": "^19.0.2",
-    "mocha": "^3.2.0",
     "standard": "^9.0.2"
   },
   "scripts": {
-    "test": "standard && jest"
-  },
-  "dependencies": {
-    "interestjs": "0.1.0"
+    "test": "standard && jest --coverage",
+    "coveralls": "npm run test && cat coverage/lcov.info | coveralls"
   }
 }
