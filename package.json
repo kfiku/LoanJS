@@ -35,7 +35,6 @@
     "standard": "^9.0.2"
   },
   "scripts": {
-    "test": "standard && jest --coverage",
-    "coveralls": "npm run test && cat coverage/lcov.info | coveralls"
+    "test": "standard && jest --coverage"
   }
 }
