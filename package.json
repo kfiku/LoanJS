@@ -41,7 +41,8 @@
     "uglifyjs": "^2.4.11"
   },
   "scripts": {
-    "test": "standard lib/*.js && jest --coverage",
+    "lint": "standard lib/*.js",
+    "test": "npm run lint && jest --coverage",
     "test:watch": "jest --coverage --watchAll",
     "clean": "rm -rf dist coverage",
     "build": "npm run clean && npm run build:loan && npm run build:loanToHtml && npm run min",
