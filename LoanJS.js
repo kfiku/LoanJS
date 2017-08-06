@@ -7,10 +7,8 @@
  * Licensed under the MIT license.
  */
 
-(function () {
-  module.exports = {
-    Loan: require('./lib/loan'),
-    BestLoan: require('./lib/bestLoan'),
-    loanToHtmlTable: require('./lib/loanToHtmlTable')
-  }
-}())
+// const loanToHtmlTable = require('./lib/loanToHtmlTable')
+// const Loan = require('./lib/loan')
+
+module.exports.Loan = require('./lib/loan')
+module.exports.loanToHtmlTable = require('./lib/loanToHtmlTable')
