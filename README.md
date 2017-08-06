@@ -112,10 +112,15 @@ more examples [here](https://github.com/kfiku/LoanJS/tree/master/example)
 
 ## Contributing
 
-Im open to contributors.
+Im open to contributors :).
 
 
 ## Release History
+
+#### 2017-08-06 v1.0.0
+ * go to es6
+ * make dist files
+ * make 100% covered tests
 
 #### 2016-02-29 v0.1.4
  * update dependencies
