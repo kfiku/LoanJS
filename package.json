@@ -35,6 +35,7 @@
     "standard": "^9.0.2"
   },
   "scripts": {
-    "test": "standard && jest --coverage"
+    "test": "standard && jest --coverage",
+    "test:watch": "jest --coverage --watchAll"
   }
 }
