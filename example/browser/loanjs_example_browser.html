@@ -71,8 +71,9 @@
 
   </div>
 
-  <script src="../../lib/loan.js"></script>
-  <script src="../../lib/loanToHtmlTable.js"></script>
+  <script src="../../dist/loan.js"></script>
+  <script src="../../dist/loanToHtmlTable.js"></script>
+
   <script>
     // jsHint inline helper
     /* global LoanJS */
@@ -85,6 +86,7 @@
         calculateBtn = document.getElementById('calculate'),
         div = document.createElement("div"),
         calc = function () {
+          console.log(LoanJS);
           var loan_1 = new LoanJS.Loan(
                         Number(amount.value),
                         Number(months.value),
