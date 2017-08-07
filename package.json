@@ -37,7 +37,7 @@
     "coveralls": "^2.13.1",
     "jest": "^19.0.2",
     "rollup": "^0.45.2",
-    "standard": "^9.0.2",
+    "standard": "^10.0.3",
     "uglifyjs": "^2.4.11"
   },
   "scripts": {
