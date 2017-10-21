@@ -110,6 +110,8 @@ Browser example:
 
 more examples [here](https://github.com/kfiku/LoanJS/tree/master/example)
 
+## Similar projects
+* [InterestJS](https://github.com/kfiku/InterestJS) - counting regular savings
 
 ## Contributing
 
