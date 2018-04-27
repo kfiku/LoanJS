@@ -33,12 +33,11 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
     "coveralls": "^3.0.0",
     "jest": "^22.4.3",
     "rollup": "^0.57.1",
     "standard": "^11.0.1",
-    "uglify-js": "^3.2.2"
+    "uglify-js": "^3.3.21"
   },
   "scripts": {
     "lint": "standard lib/*.js",
@@ -46,8 +45,8 @@
     "test:watch": "jest --coverage --watchAll",
     "clean": "rm -rf dist coverage",
     "build": "npm run clean && npm run build:loan && npm run build:loanToHtml && npm run min",
-    "build:loan": "rollup lib/loan.js --name loan --format iife --output dist/loan.js && babel -o dist/loan.js dist/loan.js",
-    "build:loanToHtml": "rollup lib/loanToHtmlTable.js --name loanToHtmlTable --format iife --output dist/loanToHtmlTable.js && babel -o dist/loanToHtmlTable.js dist/loanToHtmlTable.js",
+    "build:loan": "rollup lib/loan.js --name loan --format iife --file dist/loan.js && babel -o dist/loan.js dist/loan.js",
+    "build:loanToHtml": "rollup lib/loanToHtmlTable.js --name loanToHtmlTable --format iife --file dist/loanToHtmlTable.js && babel -o dist/loanToHtmlTable.js dist/loanToHtmlTable.js",
     "min": "npm run min:loan && npm run min:loanToHtml",
     "min:loan": "uglifyjs dist/loan.js -c -m -o dist/loan.min.js",
     "min:loanToHtml": "uglifyjs dist/loanToHtmlTable.js -c -m -o dist/loanToHtmlTable.min.js"
