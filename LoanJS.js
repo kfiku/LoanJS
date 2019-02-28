@@ -10,5 +10,5 @@
 // const loanToHtmlTable = require('./lib/loanToHtmlTable')
 // const Loan = require('./lib/loan')
 
-module.exports.Loan = require('./lib/loan')
-module.exports.loanToHtmlTable = require('./lib/loanToHtmlTable')
+module.exports.Loan = require('./dist/loan')
+module.exports.loanToHtmlTable = require('./dist/loanToHtmlTable')
