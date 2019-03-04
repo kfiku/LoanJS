@@ -58,7 +58,7 @@ LoanJS.Loan(amount, installmentsNumber, interestRate, diminishing)
 | Argument           | type   | default   | Description
 | ------------------ | ------ | --------- | ------------------
 | amount             | number | *required | full amount of Loan
-| installmentsNumber | number | *required | how meny installments will be
+| installmentsNumber | number | *required | how many installments will be (in months)
 | interestRate       | number | *required | interest rate in percent (ex. 3.5)
 | diminishing        | bool   | false     | if installments will be - true: diminishing; false: equal/annuity
 
