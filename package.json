@@ -41,9 +41,11 @@
     "uglify-js": "~3.4.9"
   },
   "scripts": {
-    "lint": "standard lib/*.js",
-    "test": "npm run lint && jest --coverage",
+    "test": "npm run lint && npm run test:node && npm run test:cover",
+    "test:node": "node ./nodeTest.js",
+    "test:cover": "jest --coverage",
     "test:watch": "jest --coverage --watchAll",
+    "lint": "standard lib/*.js nodeTest.js",
     "clean": "rm -rf dist coverage",
     "build": "npm run clean && npm run build:loan && npm run build:loanToHtml && npm run min",
     "build:loan": "rollup lib/loan.js --name loan --format iife --file dist/loan.js && babel -o dist/loan.js dist/loan.js",
