@@ -1,12 +1,11 @@
-'use strict';
+"use strict";
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 (function () {
   'use strict';
-
   /**
-   * Create Loan Object with all instalments and sum of interest
+   * Create Loan Object with all installments and sum of interest
    * @param {Loan}    loan     loan object
    * @param {object}  params   params
    *
@@ -15,10 +14,13 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   function loanToHtmlTable(loan, params) {
     params = params || {};
+
     params.formatMoney = params.formatMoney || function (num) {
       return num.toFixed(2);
     };
+
     var fm = params.formatMoney;
+
     var trans = function trans(key) {
       if (params.translations && params.translations[key]) {
         return params.translations[key];
@@ -26,6 +28,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         return key;
       }
     };
+
     var html = ['<table>' + '<thead>' + '<tr>' + '<th></th>' + '<th>' + trans('Capital') + '</th>' + '<th>' + trans('Interest') + '</th>' + '<th>' + trans('Instalment') + '</th>' + '<th>' + trans('Remain') + '</th>' + '<th>' + trans('Interest sum') + '</th>' + '</tr>' + '</thead>' + '<tbody>', '', // body content [1]
     '</tbody>' + '</table>'];
 
@@ -36,19 +39,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
     }
 
     html[1] += '<tr>' + '<td>' + trans('sum') + '</td>' + '<td>' + fm(loan.capitalSum) + '</td>' + '<td>' + fm(loan.interestSum) + '</td>' + '<td>' + fm(loan.sum) + '</td>' + '<td>-</td>' + '<td>-</td>' + '</tr>';
-
     return html.join('');
   }
-
   /* istanbul ignore next */
+
+
   if (typeof module === 'undefined') {
     // browser
-    if ((typeof LOANJS_NAMESPACE === 'undefined' ? 'undefined' : _typeof(LOANJS_NAMESPACE)) === 'object') {
+    if ((typeof LOANJS_NAMESPACE === "undefined" ? "undefined" : _typeof(LOANJS_NAMESPACE)) === 'object') {
       LOANJS_NAMESPACE.loanToHtmlTable = loanToHtmlTable; // eslint-disable-line no-undef
     } else {
       if (!window.LoanJS) {
         window.LoanJS = {};
       }
+
       window.LoanJS.loanToHtmlTable = loanToHtmlTable;
     }
   } else {
