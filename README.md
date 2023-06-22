@@ -2,17 +2,14 @@
 
 [<img src="http://npm.packagequality.com/badge/loanjs.png" align="right"/>](http://packagequality.com/#?package=loanjs)
 [![NPM version](https://badge.fury.io/js/loanjs.svg)](http://badge.fury.io/js/loanjs)
-[![Build Status](https://travis-ci.org/kfiku/LoanJS.svg?branch=master)](https://travis-ci.org/kfiku/LoanJS) [![Dependency Status](https://david-dm.org/kfiku/LoanJS/dev-status.svg)](https://david-dm.org/kfiku/loanjs)
 [![Coverage Status](https://coveralls.io/repos/github/kfiku/LoanJS/badge.svg)](https://coveralls.io/github/kfiku/LoanJS)
 ![core gzip size](http://img.badgesize.io/https://unpkg.com/loanjs@1.0.1/dist/loan.min.js?compression=gzip&label=core%20gzip%20size)
 
 > Super **small** (**~500B**) and **fast** module to calculate loan in js (browser/node.js) for **equal**/**decreasing** installments, the **sum of interest**, etc.
 
-[![Standard - JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-
 ## Getting Started
 
-Install the module with: 
+Install the module with:
 ```
 npm install loanjs
 ```
@@ -32,7 +29,7 @@ var loan = new LoanJS.Loan(
   true  // diminishing
 );
 /** returns
-{ 
+{
   installments  : [
     {
       capital     : number,
@@ -64,7 +61,7 @@ LoanJS.Loan(amount, installmentsNumber, interestRate, diminishing)
 
 ### Returns
 ```js
-{ 
+{
   installments  : [
     {
       capital     : number,
@@ -102,7 +99,7 @@ Browser example:
 <script src="../../dist/loanToHtmlTable.js"></script>
 <script>
     var loan = new LoanJS.Loan(1000, 12, 5, true);
-    
+
     var div = document.createElement("div");
     div.innerHTML = LoanJS.loanToHtmlTable(loan); // loan rendering as html table string
     document.body.appendChild(div);
@@ -135,7 +132,7 @@ Im open to contributors :).
 
 #### 2014-11-10 v0.0.4
  * update dependencies
- 
+
 #### 2014-11-10 v0.0.2
  * now you can use it in node/browserify and browser
 
@@ -143,5 +140,5 @@ Im open to contributors :).
 
 ## License
 
-Copyright (c) 2014 Grzegorz Klimek  
+Copyright (c) 2014 Grzegorz Klimek
 Licensed under the MIT license.
