@@ -19,7 +19,8 @@
   "files": [
     "dist",
     "lib",
-    "LoanJS.js"
+    "LoanJS.js",
+    "types.d.ts"
   ],
   "keywords": [
     "loanjs",
