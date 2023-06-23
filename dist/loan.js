@@ -1,7 +1,9 @@
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-(function () {
+(function (global, factory) {
+  (typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.loan = factory());
+})(void 0, function () {
   'use strict';
 
   /*
@@ -9,7 +11,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    * Calculating loan in equal or diminishing installments
    * https://github.com/kfiku/LoanJS
    *
-   * Copyright (c) 2014 Grzegorz Klimek
+   * Copyright (c) 2023 Grzegorz Klimek
    * Licensed under the MIT license.
    */
 
@@ -28,20 +30,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    * Calculating loan in equal or diminishing installments
    * https://github.com/kfiku/LoanJS
    *
-   * Copyright (c) 2014 Grzegorz Klimek
+   * Copyright (c) 2023 Grzegorz Klimek
    * Licensed under the MIT license.
    */
 
   /**
-   * Method to getting next instalment
-   * @param {number} amount
-   * @param {number} installmentsNumber
-   * @param {number} interestRate
-   * @param {boolean} diminishing
-   * @param {number} capitalSum
-   * @param {number} interestSum
-   *
-   * @returns {{ capital: number, interest: number, installment: number, remain: number, interestSum: number }}
+   * @type {import("../types").GetNextInstalmentFunction}
    */
   var getNextInstalment = function getNextInstalment(amount, installmentsNumber, interestRate, diminishing, capitalSum, interestSum) {
     var capital;
@@ -69,18 +63,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   };
 
   /**
-   * Create Loan Object with all installments and sum of interest
-   *
-   * @param {number} amount                   full amount of Loan
-   * @param {number} installmentsNumber       how many installments will be
-   * @param {number} interestRate             interest rate in percent (3.5) equal/annuity (false)
-   * @param {boolean} diminishing             if installments will be diminishing (true) or not
-   *
-   * @return {object}
+   * @type {import('../types').LoanFunction}
    */
   function Loan(amount, installmentsNumber, interestRate) {
     var diminishing = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-    /** Checking params */
     if (!amount || amount <= 0 || !installmentsNumber || installmentsNumber <= 0 || !interestRate || interestRate <= 0) {
       throw new Error("wrong parameters: ".concat(amount, " ").concat(installmentsNumber, " ").concat(interestRate));
     }
@@ -111,18 +97,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   }
 
   /* istanbul ignore next */
-  if (typeof module === 'undefined') {
-    // browser
-    if ((typeof LOANJS_NAMESPACE === "undefined" ? "undefined" : _typeof(LOANJS_NAMESPACE)) === 'object') {
-      LOANJS_NAMESPACE.Loan = Loan; // eslint-disable-line no-undef
-    } else {
-      if (!window.LoanJS) {
-        window.LoanJS = {};
-      }
-      window.LoanJS.Loan = Loan;
+  if (typeof window !== 'undefined') {
+    /** @type {any} */
+    var localWindow = window;
+    if (!localWindow.LoanJS) {
+      localWindow.LoanJS = {};
     }
-  } else {
-    // node or browserfy
-    module.exports = Loan;
+    localWindow.LoanJS.Loan = Loan;
   }
-})();
+  return Loan;
+});

@@ -1,28 +1,25 @@
 "use strict";
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-(function () {
+(function (global, factory) {
+  (typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object' && typeof module !== 'undefined' ? module.exports = factory() : typeof define === 'function' && define.amd ? define(factory) : (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.loanToHtmlTable = factory());
+})(void 0, function () {
   'use strict';
 
   /**
-   * Create Loan Object with all installments and sum of interest
-   * @param {Loan}    loan     loan object
-   * @param {object}  params   params
-   *
-   * @return {string}       html string with table
+   * @type {import("../types").LoanToHtmlTableFunction}
    */
-  function loanToHtmlTable(loan, params) {
-    params = params || {};
+  function loanToHtmlTable(loan) {
+    var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     params.formatMoney = params.formatMoney || function (num) {
       return num.toFixed(2);
     };
     var fm = params.formatMoney;
+
+    /** @param {string} key */
     var trans = function trans(key) {
-      if (params.translations && params.translations[key]) {
-        return params.translations[key];
-      } else {
-        return key;
-      }
+      var _params$translations;
+      return (params === null || params === void 0 ? void 0 : (_params$translations = params.translations) === null || _params$translations === void 0 ? void 0 : _params$translations[key]) || key;
     };
     var html = ['<table>' + '<thead>' + '<tr>' + '<th></th>' + '<th>' + trans('Capital') + '</th>' + '<th>' + trans('Interest') + '</th>' + '<th>' + trans('Instalment') + '</th>' + '<th>' + trans('Remain') + '</th>' + '<th>' + trans('Interest sum') + '</th>' + '</tr>' + '</thead>' + '<tbody>', '',
     // body content [1]
@@ -37,18 +34,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   }
 
   /* istanbul ignore next */
-  if (typeof module === 'undefined') {
-    // browser
-    if ((typeof LOANJS_NAMESPACE === "undefined" ? "undefined" : _typeof(LOANJS_NAMESPACE)) === 'object') {
-      LOANJS_NAMESPACE.loanToHtmlTable = loanToHtmlTable; // eslint-disable-line no-undef
-    } else {
-      if (!window.LoanJS) {
-        window.LoanJS = {};
-      }
-      window.LoanJS.loanToHtmlTable = loanToHtmlTable;
+  if (typeof window !== 'undefined') {
+    /** @type {any} */
+    var localWindow = window;
+    if (!localWindow.LoanJS) {
+      localWindow.LoanJS = {};
     }
-  } else {
-    // node or browserfy
-    module.exports = loanToHtmlTable;
+    localWindow.LoanJS.loanToHtmlTable = loanToHtmlTable;
   }
-})();
+  return loanToHtmlTable;
+});

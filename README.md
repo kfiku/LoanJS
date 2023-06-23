@@ -4,7 +4,9 @@
 [![NPM version](https://badge.fury.io/js/loanjs.svg)](http://badge.fury.io/js/loanjs)
 ![core gzip size](http://img.badgesize.io/https://unpkg.com/loanjs@1.0.1/dist/loan.min.js?compression=gzip&label=core%20gzip%20size)
 
-> Super **small** (**~500B**) and **fast** module to calculate loan in js (browser/node.js) for **equal**/**decreasing** installments, the **sum of interest**, etc.
+Super **small** (**~500B**) and **fast** module to calculate loan in js (browser/node.js) for **equal**/**decreasing** installments, the **sum of interest**, etc.
+
+Now with TypeScript support
 
 ## Getting Started
 
@@ -20,8 +22,11 @@ bower install loan-js --save
 
 #### Calculating Loan:
 ```js
-var LoanJS = require('loanjs');
-var loan = new LoanJS.Loan(
+import { Loan } from 'loanjs';
+// or
+const { Loan } = require('loanjs');
+
+const loan = new Loan(
   1000, // amount
   12,   // installments number
   5,    // interest rate
@@ -81,12 +86,12 @@ LoanJS.Loan(amount, installmentsNumber, interestRate, diminishing)
 nodejs / browserify example
 ```js
 
-var Loan = require('loanjs').Loan;
+const { Loan } = require('loanjs');
 
-var loan_1 = new Loan(1000, 12, 5, true);
+const loan_1 = new Loan(1000, 12, 5, true);
 // loan on 1 000($) in 12 diminishing installments (ex. months) with 5% interest rate
 
-var loan_2 = new Loan(500000, 360, 3.5);
+const loan_2 = new Loan(500000, 360, 3.5);
 // loan on 500 000($) in 360 equal installments (30 years) with 3.5% interest rate
 ```
 
@@ -112,10 +117,15 @@ more examples [here](https://github.com/kfiku/LoanJS/tree/master/example)
 
 ## Contributing
 
-Im open to contributors :).
+Im open for contributors :).
 
 
 ## Release History
+
+#### 2023-06-23 v1.0.11
+ * add TypeScript types
+ * code cleanup
+ * packages update
 
 #### 2017-08-06 v1.0.0
  * go to es6
@@ -139,5 +149,5 @@ Im open to contributors :).
 
 ## License
 
-Copyright (c) 2014 Grzegorz Klimek
+Copyright (c) 2023 Grzegorz Klimek
 Licensed under the MIT license.
