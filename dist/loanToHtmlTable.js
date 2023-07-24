@@ -19,7 +19,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     /** @param {string} key */
     var trans = function trans(key) {
       var _params$translations;
-      return (params === null || params === void 0 ? void 0 : (_params$translations = params.translations) === null || _params$translations === void 0 ? void 0 : _params$translations[key]) || key;
+      return (params === null || params === void 0 || (_params$translations = params.translations) === null || _params$translations === void 0 ? void 0 : _params$translations[key]) || key;
     };
     var html = ['<table>' + '<thead>' + '<tr>' + '<th></th>' + '<th>' + trans('Capital') + '</th>' + '<th>' + trans('Interest') + '</th>' + '<th>' + trans('Instalment') + '</th>' + '<th>' + trans('Remain') + '</th>' + '<th>' + trans('Interest sum') + '</th>' + '</tr>' + '</thead>' + '<tbody>', '',
     // body content [1]
