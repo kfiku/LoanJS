@@ -36,7 +36,8 @@ const loan = new Loan(
       interest    : number,
       installment : number,
       remain      : number
-    }
+    },
+    //...
   ],
   amount        : number,
   interestSum   : number,
@@ -57,7 +58,7 @@ LoanJS.Loan(amount, installmentsNumber, interestRate, loanType)
 | amount             | number         | *required | full amount of Loan
 | installmentsNumber | number         | *required | how many installments will be (in months)
 | interestRate       | number         | *required | interest rate in percent (ex. 3.5)
-| loanType           | string or fn   | 'annuity' | 'annuity' | 'annuityDue' | 'diminishing' | GetNextInstalmentPartFunction
+| loanType           | string or fn   | annuity | annuity \| annuityDue \| diminishing \| GetNextInstalmentPartFunction
 
 ```ts
 interface InstallmentPart {
