@@ -4,20 +4,14 @@
 [![NPM version](https://badge.fury.io/js/loanjs.svg)](http://badge.fury.io/js/loanjs)
 ![core gzip size](http://img.badgesize.io/https://unpkg.com/loanjs@1.0.1/dist/loan.min.js?compression=gzip&label=core%20gzip%20size)
 
-Super **small** (**~500B**) and **fast** module to calculate loan in js (browser/node.js) for **equal**/**decreasing** installments, the **sum of interest**, etc.
-
-Now with TypeScript support
+Super **small** (**~500B**) and **fast** module to calculate loan in js (browser/node.js) for **equal**/**decreasing**/**annuity**/**annuityDue** installments, the **sum of interest**, etc, with TypeScript support
 
 ## Getting Started
 
-Install the module with:
+Install with:
+
 ```
 npm install loanjs
-```
-
-or Bower:
-```
-bower install loan-js --save
 ```
 
 #### Calculating Loan:
@@ -30,7 +24,7 @@ const loan = new Loan(
   1000, // amount
   12,   // installments number
   5,    // interest rate
-  'annuity'  // loanType: 'annuity' | 'diminishing' | GetNextInstalmentPartFunction
+  'annuity'  // loanType: 'annuity' | 'annuityDue' | 'diminishing' | GetNextInstalmentPartFunction
 );
 /** returns
 {
@@ -61,7 +55,7 @@ LoanJS.Loan(amount, installmentsNumber, interestRate, loanType)
 | amount             | number         | *required | full amount of Loan
 | installmentsNumber | number         | *required | how many installments will be (in months)
 | interestRate       | number         | *required | interest rate in percent (ex. 3.5)
-| loanType           | string or fn   | false     | 'annuity' | 'diminishing' | GetNextInstalmentPartFunction
+| loanType           | string or fn   | 'annuity' | 'annuity' | 'annuityDue' | 'diminishing' | GetNextInstalmentPartFunction
 
 ```ts
 interface InstallmentPart {
@@ -104,6 +98,9 @@ type GetNextInstalmentPartFunction = (
 import { Loan } from 'loanjs';
 
 const annuityLoan = new Loan(1000, 12, 5, 'annuity');
+
+const annuityDueLoan = new Loan(1000, 12, 5, 'annuityDue');
+
 const diminishingLoan = new Loan(1000, 12, 5, 'diminishing');
 
 const customInstalmentLoan = new Loan(1000, 12, 5, getNext10Instalment);
@@ -158,7 +155,8 @@ Im open for contributors :).
 ## Release History
 
 #### 2023-06-23 v1.1.0
- * changing the fourth argument 'diminishing' to 'loanType' ('annuity' | 'diminishing'), with backward compatibility (false == 'annuity', true == 'diminishing')
+ * add `annuityDue` interest rate loan type
+ * changing the fourth argument `diminishing` to `loanType` (`annuity` | `diminishing` | `annuityDue`), with backward compatibility (false == 'annuity', true == 'diminishing')
  * refactor getNextInstalment to be open for extensions
  * add option to provide function to loanType to customize instalments counting
 

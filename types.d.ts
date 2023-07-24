@@ -36,7 +36,7 @@ export type GetNextInstalmentPartFunction = (
   capitalSum: number
 ) => InstallmentPart;
 
-export type LoanType = 'annuity' | 'diminishing' | GetNextInstalmentPartFunction
+export type LoanType = 'annuity' | 'annuityDue' | 'diminishing' | GetNextInstalmentPartFunction
 
 export type LoanFunction = (
   amount: number,
