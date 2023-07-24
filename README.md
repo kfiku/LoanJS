@@ -30,7 +30,7 @@ const loan = new Loan(
   1000, // amount
   12,   // installments number
   5,    // interest rate
-  true  // diminishing
+  'annuity'  // loanType: 'annuity' | 'diminishing' | GetNextInstalmentPartFunction
 );
 /** returns
 {
@@ -53,15 +53,30 @@ const loan = new Loan(
 ## Documentation
 
 ### Loan
-LoanJS.Loan(amount, installmentsNumber, interestRate, diminishing)
+LoanJS.Loan(amount, installmentsNumber, interestRate, loanType)
 
 ### Arguments
-| Argument           | type   | default   | Description
-| ------------------ | ------ | --------- | ------------------
-| amount             | number | *required | full amount of Loan
-| installmentsNumber | number | *required | how many installments will be (in months)
-| interestRate       | number | *required | interest rate in percent (ex. 3.5)
-| diminishing        | bool   | false     | if installments will be - true: diminishing; false: equal/annuity
+| Argument           | type           | default   | Description
+| ------------------ | -------------- | --------- | ------------------
+| amount             | number         | *required | full amount of Loan
+| installmentsNumber | number         | *required | how many installments will be (in months)
+| interestRate       | number         | *required | interest rate in percent (ex. 3.5)
+| loanType           | string or fn   | false     | 'annuity' | 'diminishing' | GetNextInstalmentPartFunction
+
+```ts
+interface InstallmentPart {
+  capital: number;
+  interest: number;
+  installment: number;
+}
+
+type GetNextInstalmentPartFunction = (
+  amount: number,
+  installmentsNumber: number,
+  interestRateMonth: number,
+  capitalSum: number
+) => InstallmentPart;
+```
 
 ### Returns
 ```js
@@ -83,28 +98,48 @@ LoanJS.Loan(amount, installmentsNumber, interestRate, diminishing)
 
 ## Examples
 
-nodejs / browserify example
-```js
+### typescript example
 
+```ts
+import { Loan } from 'loanjs';
+
+const annuityLoan = new Loan(1000, 12, 5, 'annuity');
+const diminishingLoan = new Loan(1000, 12, 5, 'diminishing');
+
+const customInstalmentLoan = new Loan(1000, 12, 5, getNext10Instalment);
+function getNext10Instalment (amount: number, installmentsNumber: number, capitalSum: number, interestRateMonth: number) {
+  const capital = rnd(amount / installmentsNumber);
+  const interest = 10;
+  const installment = capital + interest;
+
+  return { capital, interest, installment };
+}
+```
+
+### nodejs example
+
+```js
+import { Loan } from 'loanjs';
+// or
 const { Loan } = require('loanjs');
 
-const loan_1 = new Loan(1000, 12, 5, true);
-// loan on 1 000($) in 12 diminishing installments (ex. months) with 5% interest rate
+const loan_1 = new Loan(1000, 12, 5, 'diminishing');
+// loan on 1 000($) in 12 loanType installments (ex. months) with 5% interest rate
 
-const loan_2 = new Loan(500000, 360, 3.5);
+const loan_2 = new Loan(500000, 360, 3.5, 'annuity');
 // loan on 500 000($) in 360 equal installments (30 years) with 3.5% interest rate
 ```
 
-Browser example:
+### Browser example:
 > You can also render loan as html table
 
 ```html
 <script src="../../dist/loan.js"></script>
 <script src="../../dist/loanToHtmlTable.js"></script>
 <script>
-    var loan = new LoanJS.Loan(1000, 12, 5, true);
+    const loan = new LoanJS.Loan(1000, 12, 5, 'annuity');
 
-    var div = document.createElement("div");
+    const div = document.createElement("div");
     div.innerHTML = LoanJS.loanToHtmlTable(loan); // loan rendering as html table string
     document.body.appendChild(div);
 </script>
@@ -121,6 +156,11 @@ Im open for contributors :).
 
 
 ## Release History
+
+#### 2023-06-23 v1.1.0
+ * changing the fourth argument 'diminishing' to 'loanType' ('annuity' | 'diminishing'), with backward compatibility (false == 'annuity', true == 'diminishing')
+ * refactor getNextInstalment to be open for extensions
+ * add option to provide function to loanType to customize instalments counting
 
 #### 2023-06-23 v1.0.11
  * add TypeScript types
