@@ -1,9 +1,9 @@
 "use strict";
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 (function () {
   'use strict';
+
   /*
    * LoanJS
    * Calculating loan in equal or diminishing installments
@@ -19,10 +19,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    *
    * @returns {number}
    */
-
   function rnd(num) {
     return Math.round(num * 100) / 100;
   }
+
   /*
    * LoanJS
    * Calculating loan in equal or diminishing installments
@@ -43,15 +43,12 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    *
    * @returns {{ capital: number, interest: number, installment: number, remain: number, interestSum: number }}
    */
-
-
   var getNextInstalment = function getNextInstalment(amount, installmentsNumber, interestRate, diminishing, capitalSum, interestSum) {
     var capital;
     var interest;
     var installment;
     var irmPow;
     var interestRateMonth = interestRate / 1200;
-
     if (diminishing) {
       capital = rnd(amount / installmentsNumber);
       interest = rnd((amount - capitalSum) * interestRateMonth);
@@ -62,7 +59,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       interest = rnd((amount - capitalSum) * interestRateMonth);
       capital = installment - interest;
     }
-
     return {
       capital: capital,
       interest: interest,
@@ -71,6 +67,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       interestSum: interestSum + interest
     };
   };
+
   /**
    * Create Loan Object with all installments and sum of interest
    *
@@ -81,37 +78,29 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
    *
    * @return {object}
    */
-
-
   function Loan(amount, installmentsNumber, interestRate) {
     var diminishing = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-
     /** Checking params */
     if (!amount || amount <= 0 || !installmentsNumber || installmentsNumber <= 0 || !interestRate || interestRate <= 0) {
       throw new Error("wrong parameters: ".concat(amount, " ").concat(installmentsNumber, " ").concat(interestRate));
     }
-
     var installments = [];
     var interestSum = 0;
     var capitalSum = 0;
     var sum = 0;
-
     for (var i = 0; i < installmentsNumber; i++) {
       var inst = getNextInstalment(amount, installmentsNumber, interestRate, diminishing, capitalSum, interestSum);
       sum += inst.installment;
       capitalSum += inst.capital;
       interestSum += inst.interest;
       /** adding lost sum on rounding */
-
       if (i === installmentsNumber - 1) {
         capitalSum += inst.remain;
         sum += inst.remain;
         inst.remain = 0;
       }
-
       installments.push(inst);
     }
-
     return {
       installments: installments,
       amount: rnd(amount),
@@ -120,9 +109,8 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       sum: rnd(sum)
     };
   }
+
   /* istanbul ignore next */
-
-
   if (typeof module === 'undefined') {
     // browser
     if ((typeof LOANJS_NAMESPACE === "undefined" ? "undefined" : _typeof(LOANJS_NAMESPACE)) === 'object') {
@@ -131,7 +119,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
       if (!window.LoanJS) {
         window.LoanJS = {};
       }
-
       window.LoanJS.Loan = Loan;
     }
   } else {
