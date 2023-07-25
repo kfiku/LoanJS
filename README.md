@@ -6,7 +6,7 @@
 [![Build status](https://github.com/kfiku/LoanJS/actions/workflows/node.js.yml/badge.svg)](https://github.com/kfiku/LoanJS/actions/workflows/node.js.yml)
 
 
-Super **small** (**~500B**) and **fast** module to calculate loan in js (browser/node.js) for **equal**/**decreasing**/**annuity**/**annuityDue** installments, the **sum of interest**, etc, with TypeScript support
+Super **small** and **fast** module to calculate loan in js (browser/node.js) for **equal**/**decreasing**/**annuity**/**annuityDue** installments, the **sum of interest**, etc, with TypeScript support
 
 ## Getting Started
 
