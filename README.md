@@ -2,8 +2,8 @@
 
 [<img src="http://npm.packagequality.com/badge/loanjs.png" align="right"/>](http://packagequality.com/#?package=loanjs)
 [![NPM version](https://badge.fury.io/js/loanjs.svg)](http://badge.fury.io/js/loanjs)
-![core gzip size](http://img.badgesize.io/https://unpkg.com/loanjs@1.0.1/dist/loan.min.js?compression=gzip&label=core%20gzip%20size)
-![build status](https://github.com/kfiku/LoanJS/actions/workflows/node.js.yml/badge.svg)
+![core gzip size](https://img.badgesize.io/https:/unpkg.com/loanjs/dist/loan.min.js?label=core%20gzip%20size&compression=gzip)
+[![Build status](https://github.com/kfiku/LoanJS/actions/workflows/node.js.yml/badge.svg)](https://github.com/kfiku/LoanJS/actions/workflows/node.js.yml)
 
 
 Super **small** (**~500B**) and **fast** module to calculate loan in js (browser/node.js) for **equal**/**decreasing**/**annuity**/**annuityDue** installments, the **sum of interest**, etc, with TypeScript support
