@@ -157,7 +157,7 @@ Im open for contributors :).
 
 ## Release History
 
-#### 2023-06-23 v1.1.0
+#### 2023-07-25 v1.1.0
  * add `annuityDue` interest rate loan type
  * changing the fourth argument `diminishing` to `loanType` (`annuity` | `diminishing` | `annuityDue`), with backward compatibility (false == 'annuity', true == 'diminishing')
  * refactor getNextInstalment to be open for extensions
