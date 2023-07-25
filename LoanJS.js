@@ -3,7 +3,7 @@
  * Calculating loan in equal or diminishing installments
  * https://github.com/kfiku/LoanJS
  *
- * Copyright (c) 2014 Grzegorz Klimek
+ * Copyright (c) 2023 Grzegorz Klimek
  * Licensed under the MIT license.
  */
 
