@@ -30,7 +30,11 @@
     "loan-calculator",
     "js",
     "installments",
-    "interest"
+    "interest",
+    "annuity",
+    "annuity-due",
+    "due",
+    "diminishing"
   ],
   "devDependencies": {
     "@babel/cli": "^7.22.9",
