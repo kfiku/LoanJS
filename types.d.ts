@@ -18,16 +18,31 @@ export type GetNextInstalmentFunction = (
   amount: number,
   installmentsNumber: number,
   interestRate: number,
-  diminishing: boolean,
+  loanType: LoanType,
   capitalSum: number,
   interestSum: number
 ) => Installment;
+
+export interface InstallmentPart {
+  capital: number;
+  interest: number;
+  installment: number;
+}
+
+export type GetNextInstalmentPartFunction = (
+  amount: number,
+  installmentsNumber: number,
+  interestRateMonth: number,
+  capitalSum: number
+) => InstallmentPart;
+
+export type LoanType = 'annuity' | 'diminishing'
 
 export type LoanFunction = (
   amount: number,
   installmentsNumber: number,
   interestRate: number,
-  diminishing = false
+  loanType: LoanType | false | true = 'annuity'
 ) => LoanInstance;
 
 /**
