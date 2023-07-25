@@ -35,24 +35,66 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
    */
 
   /**
+   * @type {import("../types").GetNextInstalmentPartFunction}
+   */
+  function getNextDiminishingInstalment(amount, installmentsNumber, capitalSum, interestRateMonth) {
+    var capital = rnd(amount / installmentsNumber);
+    var interest = rnd((amount - capitalSum) * interestRateMonth);
+    var installment = capital + interest;
+    return {
+      capital: capital,
+      interest: interest,
+      installment: installment
+    };
+  }
+
+  /**
+   * @type {import("../types").GetNextInstalmentPartFunction}
+   */
+  function getNextAnnuityInstalment(amount, installmentsNumber, capitalSum, interestRateMonth) {
+    var z = 1 / (1 + interestRateMonth);
+    var div = (1 - Math.pow(z, installmentsNumber)) * z;
+    var installment = rnd(amount * (1 - z) / div);
+    var interest = rnd((amount - capitalSum) * interestRateMonth);
+    var capital = installment - interest;
+    return {
+      capital: capital,
+      interest: interest,
+      installment: installment
+    };
+  }
+
+  /**
+   * @type {import("../types").GetNextInstalmentPartFunction}
+   */
+  function getNextAnnuityDueInstalment(amount, installmentsNumber, capitalSum, interestRateMonth) {
+    var z = 1 / (1 + interestRateMonth);
+    var div = 1 - Math.pow(z, installmentsNumber);
+    var installment = rnd(amount * (1 - z) / div);
+    var interest = rnd((amount - capitalSum) * interestRateMonth);
+    var capital = installment - interest;
+    return {
+      capital: capital,
+      interest: interest,
+      installment: installment
+    };
+  }
+  var nextInstalmentFnMap = {
+    annuity: getNextAnnuityInstalment,
+    diminishing: getNextDiminishingInstalment,
+    annuityDue: getNextAnnuityDueInstalment
+  };
+
+  /**
    * @type {import("../types").GetNextInstalmentFunction}
    */
-  var getNextInstalment = function getNextInstalment(amount, installmentsNumber, interestRate, diminishing, capitalSum, interestSum) {
-    var capital;
-    var interest;
-    var installment;
-    var irmPow;
+  function getNextInstalment(amount, installmentsNumber, interestRate, loanType, capitalSum, interestSum) {
     var interestRateMonth = interestRate / 1200;
-    if (diminishing) {
-      capital = rnd(amount / installmentsNumber);
-      interest = rnd((amount - capitalSum) * interestRateMonth);
-      installment = capital + interest;
-    } else {
-      irmPow = Math.pow(1 + interestRateMonth, installmentsNumber);
-      installment = rnd(amount * (interestRateMonth * irmPow / (irmPow - 1)));
-      interest = rnd((amount - capitalSum) * interestRateMonth);
-      capital = installment - interest;
-    }
+    var nextInstalmentFn = typeof loanType === 'function' ? loanType : nextInstalmentFnMap[loanType] || getNextAnnuityInstalment;
+    var _nextInstalmentFn = nextInstalmentFn(amount, installmentsNumber, capitalSum, interestRateMonth),
+      capital = _nextInstalmentFn.capital,
+      interest = _nextInstalmentFn.interest,
+      installment = _nextInstalmentFn.installment;
     return {
       capital: capital,
       interest: interest,
@@ -60,22 +102,23 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       remain: amount - capitalSum - capital,
       interestSum: interestSum + interest
     };
-  };
+  }
 
   /**
    * @type {import('../types').LoanFunction}
    */
   function Loan(amount, installmentsNumber, interestRate) {
-    var diminishing = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+    var loanTypeWithBool = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'annuity';
     if (!amount || amount <= 0 || !installmentsNumber || installmentsNumber <= 0 || !interestRate || interestRate <= 0) {
       throw new Error("wrong parameters: ".concat(amount, " ").concat(installmentsNumber, " ").concat(interestRate));
     }
     var installments = [];
+    var loanType = typeof loanTypeWithBool === 'boolean' ? loanTypeFromBool(loanTypeWithBool) : loanTypeWithBool;
     var interestSum = 0;
     var capitalSum = 0;
     var sum = 0;
     for (var i = 0; i < installmentsNumber; i++) {
-      var inst = getNextInstalment(amount, installmentsNumber, interestRate, diminishing, capitalSum, interestSum);
+      var inst = getNextInstalment(amount, installmentsNumber, interestRate, loanType, capitalSum, interestSum);
       sum += inst.installment;
       capitalSum += inst.capital;
       interestSum += inst.interest;
@@ -94,6 +137,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       capitalSum: rnd(capitalSum),
       sum: rnd(sum)
     };
+  }
+
+  /**
+   * @param {boolean} boolType
+   * @returns {import("../types").LoanType}
+   */
+  function loanTypeFromBool(boolType) {
+    return boolType ? 'diminishing' : 'annuity';
   }
 
   /* istanbul ignore next */
